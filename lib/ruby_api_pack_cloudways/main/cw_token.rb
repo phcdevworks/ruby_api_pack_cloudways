@@ -8,21 +8,20 @@ module RubyApiPackCloudways
                 @cw_url_path_auth = cw_url_path_auth
                 @cw_user_email = cw_user_email
                 @cw_user_key = cw_user_key
-                @cw_api_token = cw_api_token
             end 
 
             # Cloudways - Token - Connection
             def cw_api_token_connection
-            
+
                 # Cloudways - Token - Connection via Faraday
                 Faraday.new url: @cw_api_url_base + @cw_url_path_auth do |cw_token_connection|
                     cw_token_connection.request  :url_encoded
                     cw_token_connection.response :logger
                     cw_token_connection.adapter  Faraday.default_adapter
                 end
-            
-            end
 
+            end
+            
             # Cloudways - Token - Request
             def cw_api_token
 
