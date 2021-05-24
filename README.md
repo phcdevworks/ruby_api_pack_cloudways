@@ -8,7 +8,7 @@ Easily connect to your Cloudways account through their API.
 
 #### Step 1 - Add to your application
   
-    gem 'phcdevworks_press'
+    gem 'ruby_api_pack_cloudways'
     bundle install
   
 #### Variables
