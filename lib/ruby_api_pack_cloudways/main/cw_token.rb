@@ -8,6 +8,7 @@ module RubyApiPackCloudways
                 @cw_url_path_auth = cw_url_path_auth
                 @cw_user_email = cw_user_email
                 @cw_user_key = cw_user_key
+                @cw_api_token = cw_api_token
             end 
 
             # Cloudways - Token - Connection
@@ -35,7 +36,7 @@ module RubyApiPackCloudways
                 end
 
                 # Cloudways - Token - Request Isolate and Get Token from Response via OJ
-                return Oj.load(cloudways_token_request.body)["access_token"]
+                return @cw_apit_token = Oj.load(cloudways_token_request.body)["access_token"]
 
             end
 
