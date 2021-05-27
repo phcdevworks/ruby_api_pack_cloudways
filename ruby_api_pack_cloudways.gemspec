@@ -22,8 +22,8 @@ Gem::Specification.new do |spec|
     spec.files = Dir["{lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
     # Main Dependencues
-    spec.add_dependency "bundler", "~> 1.17"
-    spec.add_dependency "rake", "~> 10.0"
+    spec.add_dependency "bundler"
+    spec.add_dependency "rake"
 
     # API Dependencies
     spec.add_dependency "oj", "~> 3.11"
