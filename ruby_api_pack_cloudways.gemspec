@@ -16,10 +16,11 @@ Gem::Specification.new do |spec|
     # Gem Meta Data
     spec.metadata["allowed_push_host"] = "https://rubygems.org/"
     spec.metadata["homepage_uri"] = spec.homepage
-    spec.metadata["source_code_uri"] = "https://github.com/phcdevworks/universal_api_wrapper_pack"
+    spec.metadata["source_code_uri"] = "https://github.com/phcdevworks/universal_api_wrapper_pack/"
     spec.metadata["changelog_uri"] = "https://github.com/phcdevworks/universal_api_wrapper_pack/releases"
 
     spec.files = Dir["{lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
+    spec.require_paths = ["lib"]
 
     # Main Dependencues
     spec.add_dependency "bundler"
