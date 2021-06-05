@@ -10,7 +10,7 @@ module RubyApiPackCloudways
         end 
 
         # Cloudways - Token - Connection
-        def  self.cw_api_token_connection
+        def cw_api_token_connection
 
             # Cloudways - Token - Connection via Faraday
             Faraday.new url: @cw_api_url_base + @cw_url_path_auth do |cw_token_connection|
@@ -22,7 +22,7 @@ module RubyApiPackCloudways
         end
 
         # Cloudways - Token - Request
-        def self.cw_api_token
+        def cw_api_token
 
             # Cloudways - Token - Request From Above Connection Method
             cloudways_token_request = cw_api_token_connection.post do |cw_token_request|

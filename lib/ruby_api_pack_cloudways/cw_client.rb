@@ -7,8 +7,8 @@ module RubyApiPackCloudways
         require "oj"
 
         # Auto Loads
-        autoload :CwConnect, 'main/cw_connect'
-        autoload :CwToken, 'main/cw_token'
+        autoload :CwConnect, 'ruby_api_pack_cloudways/cw_connect'
+        autoload :CwToken, 'ruby_api_pack_cloudways/cw_token'
 
         # Variables
         CW_API_URL = "https://api.cloudways.com/api/v1"
@@ -22,7 +22,7 @@ module RubyApiPackCloudways
         require_relative "cw_connect"
 
         # Get Token Response
-        cw_api_get_token = CwToken.new(CW_API_URL, CW_API_PATH_TOKEN, CW_API_EMAIL, CW_API_KEY)
+        #cw_api_get_token = CwToken.new(CW_API_URL, CW_API_PATH_TOKEN, CW_API_EMAIL, CW_API_KEY)
         cw_api_connection = CwConnect.new(CW_API_URL, CW_API_PATH, cw_api_get_token.cw_api_token)
 
     end
