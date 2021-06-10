@@ -2,6 +2,9 @@ module RubyApiPackCloudways
     module Connection
         class CwToken
 
+            # Cloudways - Token - Attributes
+            attr_accessor :cw_api_url_base, :cw_url_path_auth, :cw_user_email, :cw_user_key
+
             # Cloudways - Token - Init
             def initialize(cw_api_url_base, cw_url_path_auth, cw_user_email, cw_user_key)  
                 @cw_api_url_base = cw_api_url_base
@@ -29,8 +32,8 @@ module RubyApiPackCloudways
                 cloudways_token_request = cw_api_token_connection.post do |cw_token_request|
                     cw_token_request.headers["Content-Type"] = "application/x-www-form-urlencoded"
                     cw_token_request.body = {
-                        email: URI::encode(@cw_user_email),
-                        api_key: URI::encode(@cw_user_key)
+                        email: @cw_user_email,
+                        api_key: @cw_user_key
                     }
                 end
 

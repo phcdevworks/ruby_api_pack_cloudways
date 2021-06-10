@@ -1,11 +1,15 @@
 module RubyApiPackCloudways
     module Api
         class CwLists
-            
+
             def self.cw_server_list
-                cw_api_token  = RubyApiPackCloudways::Connection::CwToken.new(CW_API_URL, CW_API_PATH_TOKEN, CW_API_EMAIL, CW_API_KEY)
-                server_lists = RubyApiPackCloudways::Connection::CwConnect.new(CW_API_URL, "/servers", cw_api_token)
-                return server_lists
+                cw_api_list_server = Connection::CwConnect.new(CW_API_URL, "/server", $cw_api_token.cw_api_token)
+                return Oj.load(cw_api_list_server.cloudways_api_connection.body)["servers"]
+            end
+
+            def self.cw_providers_list
+                providers_lists = Connection::CwConnect.new(CW_API_URL, "/providers", $cw_api_token.cw_api_token)
+                return Oj.load(providers_lists.cloudways_api_connection.body)["providers"]
             end
 
         end
