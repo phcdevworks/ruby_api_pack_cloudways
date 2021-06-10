@@ -22,12 +22,5 @@ module RubyApiPackCloudways
         # Load API Files
         require_relative "api/cw_lists"
 
-            # Get Token Response
-            cw_api_connection = Connection::CwConnect.new(CW_API_URL, "/server")
-            
-            
-
-            puts cw_api_connection.cloudways_api_connection
-            
     end
 end
