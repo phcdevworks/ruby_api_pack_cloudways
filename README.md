@@ -10,6 +10,25 @@ Easily connect to your Cloudways account through their API.
   
     gem 'ruby_api_pack_cloudways'
     bundle install
+    
+#### Controller Example
+    
+    # Load Gems & Files
+    require "ruby_api_pack_cloudways"
+
+    def index
+        @server_index_connection_index = RubyApiPackCloudways::Api::CwLists.cw_server_list
+    end
+
+
+#### Example on Index File
+
+    <% @server_index_connection_index.each do |continent| %>
+    
+    <%= continent["id"] %>
+    
+    <% end %>
+
   
 #### Variables
 
