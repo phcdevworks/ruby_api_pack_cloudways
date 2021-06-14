@@ -16,9 +16,6 @@ module RubyApiPackCloudways
         require_relative "connection/cw_token"
         require_relative "connection/cw_connect"
 
-        # Common API Connection
-        $cw_api_token  = Connection::CwToken.new(CW_API_URL, CW_API_PATH_TOKEN, CW_API_EMAIL, CW_API_KEY)
-
         # Load API Files
         require_relative "api/cw_lists"
 
