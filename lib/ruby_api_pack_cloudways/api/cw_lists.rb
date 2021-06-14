@@ -4,7 +4,7 @@ module RubyApiPackCloudways
 
             def self.cw_server_list
                 cw_api_list_server = Connection::CwConnect.new(CW_API_URL, "/server")
-                return cw_api_list_server.cloudways_api_connection.body
+                return Oj.load(cw_api_list_server.cloudways_api_connection.body)["servers"]
             end
 
             def self.cw_providers_list
