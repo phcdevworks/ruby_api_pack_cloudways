@@ -1,7 +1,7 @@
 ### Ruby API Wrapper - Cloudways
      
-Early Release. Only token auth working.
-  
+Early Release. Beta 5.
+   
 Easily connect to your Cloudways account through their API.
 
 * Secure OAuth Cloudways API Authentication
