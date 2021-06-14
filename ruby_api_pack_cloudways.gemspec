@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
     spec.require_paths = ["lib"]
 
     # Main Dependencues
-    spec.add_dependency "bundler", "~> 2.2", ">= 2.2.20"
+    spec.add_dependency "bundler"
     spec.add_dependency "rake", "~> 13.0", ">= 13.0.3"
 
     # API Dependencies
