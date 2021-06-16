@@ -18,6 +18,7 @@ module RubyApiPackCloudways
 
         # Load API Files
         require_relative "api/cw_lists"
+        require_relative "api/cw_server"
 
     end
 end

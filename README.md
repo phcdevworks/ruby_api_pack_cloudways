@@ -17,15 +17,15 @@ Easily connect to your Cloudways account through their API.
     require "ruby_api_pack_cloudways"
 
     def index
-        @server_index_connection_index = RubyApiPackCloudways::Api::CwLists.cw_server_list
+        @provider_list = RubyApiPackCloudways::Api::CwLists.cw_provider_list
     end
 
 
 #### Example on Index File
 
-    <% @server_index_connection_index.each do |continent| %>
+    <% @provider_list.each do |provider| %>
     
-    <%= continent["id"] %>
+    <%= provider["name"] %>
     
     <% end %>
 
