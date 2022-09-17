@@ -9,7 +9,6 @@ module RubyApiPackCloudways
 
         # Load Required Gems
         require "faraday"
-        require "faraday_middleware"
         require "oj"
 
         # Load Main Files
