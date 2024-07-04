@@ -11,8 +11,11 @@ Gem::Specification.new do |spec|
   spec.email       = ['info@phcdevworks.com', 'brad.potts@phcdevworks.com']
   spec.homepage    = 'https://phcdevworks.com/'
   spec.summary     = 'API Pack for Cloudways'
-  spec.description = 'Ruby API wrapper to use with Cloudways API. Can be used alone or part of the larger PHCDevworks Ruby API Pack.'
+  spec.description = 'Ruby API wrapper to use with Cloudways API.'
   spec.license     = 'MIT'
+
+  # Specify the required Ruby version
+  spec.required_ruby_version = '>= 2.7.0'
 
   # Gem Meta Data
   spec.metadata['allowed_push_host'] = 'https://rubygems.org/'

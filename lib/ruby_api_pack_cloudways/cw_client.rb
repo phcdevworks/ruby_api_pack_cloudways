@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# /lib/ruby_api_pack_cloudways/cw_client.rb
+
 require 'faraday'
 require 'oj'
 
