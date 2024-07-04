@@ -1,102 +1,56 @@
+require:
+  - rubocop-performance
+  - rubocop-rspec
+
 AllCops:
-  TargetRubyVersion: 2.7
   Exclude:
-    - bin/**/*
-    - contrib/**/*
-    - config/**/*
-    - db/**/*
-    - tmp/**/*
-    - Capfile
-    - Gemfile
-    - Rakefile
+    - "db/schema.rb"
+    - "db/migrate/**/*"
+    - "bin/**/*"
+    - "node_modules/**/*"
+    - "tmp/**/*"
+    - "vendor/**/*"
 
-# Nested module syntax is fine, just be careful with
-# scoping, i.e. on include
-Style/ClassAndModuleChildren:
-  Enabled: false
-
-# Old ruby style syntax may still be needed
-Style/HashSyntax:
+Lint/RedundantCopDisableDirective:
   Enabled: true
 
-# Never break line due to length, except in data
-# vim: set wrap
-Layout/LineLength:
-  Max: 1024
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*"
 
-# Rails controllers and such
-Metrics/MethodLength:
-  Max: 20
-
-# Use and/or for flow control, but not in boolean assignments
-# http://devblog.avdi.org/2010/08/02/using-and-and-or-in-ruby/
-Style/AndOr:
-  Enabled: false
-
-# Use not with .select and flow control
-Style/Not:
-  Enabled: false
-
-# Use { only for single line blocks, but allow block content on its own line to keep line length short
-# each { |l|
-#   l.apply_long_method_name
-# }
-Style/BlockDelimiters:
-  Enabled: false
-
-# Do not use lambda
-Style/Lambda:
-  Enabled: false
-
-# Allow TODO instead of requiring TODO:
-Style/CommentAnnotation:
-  Enabled: false
-
-# Do not write 1234 as 1_234
-Style/NumericLiterals:
-  Enabled: false
-
-# Relax for controllers with multiple formats
-Metrics/AbcSize:
-  Max: 40
-
-# Too spammy
 Style/Documentation:
   Enabled: false
 
-# Will probably be default in ruby 3
-Style/FrozenStringLiteralComment:
-  Enabled: false
+Naming/FileName:
+  Exclude:
+    - "db/schema.rb"
+    - "db/migrate/**/*"
+    - "Gemfile"
+    - "Guardfile"
+    - "Rakefile"
+    - "config.ru"
+    - "package.json"
+    - "*.yml"
+    - "*.md"
 
-# Use raise if you expect to catch the expception
-Style/SignalException:
-  Enabled: false
+Layout/LineLength:
+  Max: 120
+  AllowHeredoc: true
+  AllowURI: true
 
-# False positive for if var = value
-Lint/AssignmentInCondition:
-  Enabled: false
+Metrics/MethodLength:
+  Max: 15
 
-# Too much manual horizontal alignment
-Layout/HashAlignment:
-  Enabled: false
+Metrics/AbcSize:
+  Max: 10
 
-Layout/ArrayAlignment:
-  Enabled: false
+Metrics/ClassLength:
+  Max: 100
 
-# Vim prefers fixed indent, avoid manual vertical alignment
-Layout/ArgumentAlignment:
-  Enabled: true
-  EnforcedStyle: with_fixed_indentation
+Metrics/LineLength:
+  Max: 120
 
-Layout/MultilineMethodCallIndentation:
-  EnforcedStyle: indented
-
-# Load order is important
-Bundler/OrderedGems:
-  Enabled: false
-
-Style/PercentLiteralDelimiters:
-  Enabled: false
-
-Layout/EmptyLineAfterGuardClause:
-  Enabled: false
+# RSpec-specific configurations
+RSpec:
+  MultipleExpectations:
+    Enabled: false
