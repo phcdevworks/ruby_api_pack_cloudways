@@ -1,18 +1,17 @@
 # frozen_string_literal: true
 
+# /lib/ruby_api_pack_cloudways/connection/cw_connect.rb
+
 module RubyApiPackCloudways
   module Connection
     class CwConnect
-      # Connection - Attributes
       attr_reader :cw_api_url_base, :cw_api_path
 
-      # Connection - Init
       def initialize(cw_api_url_base, cw_api_path)
         @cw_api_url_base = cw_api_url_base
         @cw_api_path = cw_api_path
       end
 
-      # Connection - API Connection Call
       def cloudways_api_connection
         token = Connection::CwToken.new(CW_API_URL, CW_API_PATH_TOKEN, CW_API_EMAIL, CW_API_KEY).cw_api_token
         response = Faraday.new(url: @cw_api_url_base) do |conn|
