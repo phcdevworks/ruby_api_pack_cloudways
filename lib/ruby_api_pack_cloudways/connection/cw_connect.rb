@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module RubyApiPackCloudways
   module Connection
     class CwConnect
