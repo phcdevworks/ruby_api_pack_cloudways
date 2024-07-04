@@ -1,47 +1,44 @@
 module RubyApiPackCloudways
     module Connection
-        class CwToken
-
-            # Cloudways - Token - Attributes
-            attr_accessor :cw_api_url_base, :cw_url_path_auth, :cw_user_email, :cw_user_key
-
-            # Cloudways - Token - Init
-            def initialize(cw_api_url_base, cw_url_path_auth, cw_user_email, cw_user_key)  
-                @cw_api_url_base = cw_api_url_base
-                @cw_url_path_auth = cw_url_path_auth
-                @cw_user_email = cw_user_email
-                @cw_user_key = cw_user_key
-            end 
-
-            # Cloudways - Token - Connection
-            def cw_api_token_connection
-
-                # Cloudways - Token - Connection via Faraday
-                Faraday.new url: @cw_api_url_base + @cw_url_path_auth do |cw_token_connection|
-                    cw_token_connection.request  :url_encoded
-                    cw_token_connection.response :logger
-                    cw_token_connection.adapter  Faraday.default_adapter
-                end
-
-            end
-
-            # Cloudways - Token - Request
-            def cw_api_token
-
-                # Cloudways - Token - Request From Above Connection Method
-                cloudways_token_request = cw_api_token_connection.post do |cw_token_request|
-                    cw_token_request.headers["Content-Type"] = "application/x-www-form-urlencoded"
-                    cw_token_request.body = {
-                        email: @cw_user_email,
-                        api_key: @cw_user_key
-                    }
-                end
-
-                # Cloudways - Token - Request Isolate and Get Token from Response via OJ
-                return cw_api_token = Oj.load(cloudways_token_request.body)["access_token"]
-
-            end
-
+      class CwToken
+        # Cloudways - Token - Attributes
+        attr_reader :cw_api_url_base, :cw_url_path_auth, :cw_user_email, :cw_user_key
+  
+        # Cloudways - Token - Init
+        def initialize(cw_api_url_base, cw_url_path_auth, cw_user_email, cw_user_key)
+          @cw_api_url_base = cw_api_url_base
+          @cw_url_path_auth = cw_url_path_auth
+          @cw_user_email = cw_user_email
+          @cw_user_key = cw_user_key
         end
+  
+        # Cloudways - Token - Connection
+        def cw_api_token_connection
+          Faraday.new(url: "#{@cw_api_url_base}#{@cw_url_path_auth}") do |conn|
+            conn.request :url_encoded
+            conn.response :logger
+            conn.adapter Faraday.default_adapter
+          end
+        end
+  
+        # Cloudways - Token - Request
+        def cw_api_token
+          response = cw_api_token_connection.post do |req|
+            req.headers["Content-Type"] = "application/x-www-form-urlencoded"
+            req.body = { email: @cw_user_email, api_key: @cw_user_key }
+          end
+  
+          parse_response(response)["access_token"]
+        end
+  
+        private
+  
+        def parse_response(response)
+          Oj.load(response.body)
+        rescue Oj::ParseError => e
+          raise "Error parsing response: #{e.message}"
+        end
+      end
     end
-end
+  end
+  
