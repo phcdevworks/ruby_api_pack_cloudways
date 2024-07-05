@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: Build & Publish Gem to Rubygems.org
+    name: Build, Test & Publish Gem to Rubygems.org
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -15,12 +15,26 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Ruby 2.6
+
+    # Set up the latest version of Ruby
+    - name: Set up Ruby
       uses: actions/setup-ruby@v1
       with:
-        ruby-version: 2.6.x
+        ruby-version: 'latest'
 
+    # Install dependencies
+    - name: Install Dependencies
+      run: |
+        gem install bundler
+        bundle install
+
+    # Run RSpec tests
+    - name: Run RSpec
+      run: bundle exec rspec
+
+    # Publish to RubyGems if tests pass
     - name: Publish to RubyGems
+      if: success()
       run: |
         mkdir -p $HOME/.gem
         touch $HOME/.gem/credentials
