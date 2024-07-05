@@ -3,7 +3,7 @@
 require 'faraday'
 require 'oj'
 
-# Load API Files
+# PHCDEVONE - Load API Files
 require_relative 'connection/cw_token'
 require_relative 'connection/cw_connect'
 require_relative 'api/cw_lists'
@@ -12,6 +12,7 @@ require_relative 'constants'
 
 module RubyApiPackCloudways
   class CwClient
+    # PHCDEVONE - Include the RubyApiPackCloudways::Constants module
     include RubyApiPackCloudways::Constants
   end
 end
