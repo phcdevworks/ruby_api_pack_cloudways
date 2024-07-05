@@ -18,9 +18,9 @@ jobs:
 
     # Set up the latest version of Ruby
     - name: Set up Ruby
-      uses: actions/setup-ruby@v1
+      uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 'latest'
+        ruby-version: '3.1'  # You can set this to the latest stable version available
 
     # Install dependencies
     - name: Install Dependencies
