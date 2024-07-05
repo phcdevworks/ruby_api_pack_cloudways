@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
-# /lib/ruby_api_pack_cloudways/api/cw_lists.rb
+require_relative '../constants'
 
 module RubyApiPackCloudways
   module Api
     class CwLists
+      include RubyApiPackCloudways::Constants
+
       def self.cw_provider_list
         fetch_list('/providers')['providers']
       end
