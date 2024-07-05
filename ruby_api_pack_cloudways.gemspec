@@ -27,9 +27,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   # Main Dependencies
-  spec.add_dependency 'bundler', '~> 2.3'
   spec.add_dependency 'faraday', '~> 2.5'
   spec.add_dependency 'httparty', '~> 0.20.0'
   spec.add_dependency 'oj', '~> 3.13'
-  spec.add_dependency 'rake', '~> 13.0'
 end

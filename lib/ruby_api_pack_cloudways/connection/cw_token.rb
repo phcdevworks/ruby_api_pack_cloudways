@@ -1,21 +1,20 @@
 # frozen_string_literal: true
 
-# /lib/ruby_api_pack_cloudways/connection/cw_token.rb
-
 module RubyApiPackCloudways
   module Connection
     class CwToken
-      attr_reader :cw_api_url_base, :cw_url_path_auth, :cw_user_email, :cw_user_key
+      attr_reader :cw_api_url_base, :cw_url_path_auth, :cw_user_email, :cw_user_key, :faraday_connection
 
-      def initialize(cw_api_url_base, cw_url_path_auth, cw_user_email, cw_user_key)
+      def initialize(cw_api_url_base, cw_url_path_auth, cw_user_email, cw_user_key, faraday_connection = Faraday)
         @cw_api_url_base = cw_api_url_base
         @cw_url_path_auth = cw_url_path_auth
         @cw_user_email = cw_user_email
         @cw_user_key = cw_user_key
+        @faraday_connection = faraday_connection
       end
 
       def cw_api_token_connection
-        Faraday.new(url: "#{@cw_api_url_base}#{@cw_url_path_auth}") do |conn|
+        faraday_connection.new(url: "#{@cw_api_url_base}#{@cw_url_path_auth}") do |conn|
           conn.request :url_encoded
           conn.response :logger
           conn.adapter Faraday.default_adapter
