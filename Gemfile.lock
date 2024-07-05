@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ruby_api_pack_cloudways (0.1.0.pre.3)
+    ruby_api_pack_cloudways (0.1.0.pre.4)
       faraday (~> 2.9)
       httparty (~> 0.22.0)
       oj (~> 3.16)
