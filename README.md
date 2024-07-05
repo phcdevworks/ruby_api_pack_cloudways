@@ -1,11 +1,9 @@
 ### Ruby API Wrapper - Cloudways
-     
-Early Release. Beta 5.
    
 Easily connect to your Cloudways account through their API.
-
+  
 * Secure OAuth Cloudways API Authentication
-
+  
 #### Step 1 - Add to your application
   
     gem 'ruby_api_pack_cloudways'
@@ -19,18 +17,19 @@ Easily connect to your Cloudways account through their API.
     def index
         @provider_list = RubyApiPackCloudways::Api::CwLists.cw_provider_list
     end
-
-
+  
 #### Example on Index File
 
     <% @provider_list.each do |provider| %>
-    
-    <%= provider["name"] %>
-    
+        <%= provider["name"] %>
     <% end %>
-
   
 #### Variables
-
-    PHCDEV_API_CLOUDWAYS_EMAIL = Your Cloudways Email Login
-    PHCDEV_API_CLOUDWAYS_KEY = API Key Provided by Cloudways
+  
+Set the following environment variables in your application:
+  
+    export PHCDEV_API_CLOUDWAYS_EMAIL=your_cloudways_email_login
+    export PHCDEV_API_CLOUDWAYS_KEY=api_key_provided_by_cloudways
+  
+These variables should be configured with your Cloudways email login and API key provided by Cloudways.
+  
