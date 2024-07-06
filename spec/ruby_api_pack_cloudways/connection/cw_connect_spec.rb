@@ -4,36 +4,21 @@ require 'spec_helper'
 require 'ruby_api_pack_cloudways/connection/cw_connect'
 
 RSpec.describe RubyApiPackCloudways::Connection::CwConnect do
-  subject(:connection) { described_class.new(connection_params[:url_base], connection_params[:path], mock_faraday) }
-
-  let(:connection_params) do
-    {
-      url_base: 'https://api.cloudways.com/api/v1',
-      path: '/some_path'
-    }
-  end
-
-  let(:mock_token) { 'fake_token' }
-  let(:response_body) { '{"data":"value"}' }
-  let(:mock_faraday) { class_double(Faraday) }
-  let(:mock_connection) { instance_double(Faraday::Connection) }
+  let(:connection) { described_class.new('https://api.cloudways.com/api/v1', '/some_path') }
 
   before do
-    allow(RubyApiPackCloudways::Connection::CwToken).to receive(:new)
-      .and_return(instance_double(RubyApiPackCloudways::Connection::CwToken, cw_api_token: mock_token))
-    allow(mock_faraday).to receive(:new).and_return(mock_connection)
-    allow(mock_connection).to receive(:get).and_return(
-      instance_double(Faraday::Response, status: 200, body: response_body)
-    )
+    allow(RubyApiPackCloudways::Connection::CwToken).to receive(:new).and_return(instance_double(RubyApiPackCloudways::Connection::CwToken, cw_api_token: 'fake_token'))
   end
 
   describe '#cloudways_api_connection' do
-    it 'creates a Faraday connection' do
+    it 'creates a HTTParty connection' do
+      allow(HTTParty).to receive(:get).and_return(instance_double(HTTParty::Response, code: 200, body: '{"data":"value"}'))
       connection.cloudways_api_connection
-      expect(mock_faraday).to have_received(:new).with(url: connection_params[:url_base])
+      expect(HTTParty).to have_received(:get).with('https://api.cloudways.com/api/v1/some_path', headers: { 'Authorization' => 'Bearer fake_token' })
     end
 
     it 'returns a successful response' do
+      allow(HTTParty).to receive(:get).and_return(instance_double(HTTParty::Response, code: 200, body: '{"data":"value"}'))
       response = connection.cloudways_api_connection
       expect(response['data']).to eq('value')
     end

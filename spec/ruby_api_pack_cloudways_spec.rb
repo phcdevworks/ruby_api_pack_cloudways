@@ -1,37 +1,43 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require 'ruby_api_pack_cloudways'
 
-RSpec.describe RubyApiPackCloudways do
-  it 'has a version number' do
-    expect(RubyApiPackCloudways::VERSION).not_to be_nil
+RSpec.describe 'RubyApiPackCloudways Integration Test', :vcr do
+  before do
+    RubyApiPackCloudways.configure do |config|
+      config.api_url = ENV['CLOUDWAYS_API_URL'] || 'https://api.cloudways.com/api/v1'
+      config.api_path_token = ENV['CLOUDWAYS_API_PATH_TOKEN'] || '/oauth/access_token'
+      config.api_email = ENV['CLOUDWAYS_API_EMAIL']
+      config.api_key = ENV['CLOUDWAYS_API_KEY']
+    end
   end
 
-  describe '.configure' do
-    before do
-      RubyApiPackCloudways.configure do |config|
-        config.api_url = 'https://api.cloudways.com/api/v1'
-        config.api_path_token = '/oauth/access_token'
-        config.api_email = 'email@example.com'
-        config.api_key = 'api_key'
-      end
+  describe 'CwServer' do
+    it 'fetches the list of servers' do
+      servers = RubyApiPackCloudways::Api::CwServer.cw_server_list
+      expect(servers).to be_an(Array)
+    end
+  end
+
+  describe 'CwLists' do
+    it 'fetches the list of providers' do
+      providers = RubyApiPackCloudways::Api::CwLists.cw_provider_list
+      expect(providers).to be_an(Array)
     end
 
-    it 'sets the api_url correctly' do
-      expect(RubyApiPackCloudways.configuration.api_url).to eq('https://api.cloudways.com/api/v1')
+    it 'fetches the list of server sizes' do
+      sizes = RubyApiPackCloudways::Api::CwLists.cw_server_size_list
+      expect(sizes).to be_a(Hash)
     end
 
-    it 'sets the api_path_token correctly' do
-      expect(RubyApiPackCloudways.configuration.api_path_token).to eq('/oauth/access_token')
+    it 'fetches the list of apps' do
+      apps = RubyApiPackCloudways::Api::CwLists.cw_app_list
+      expect(apps).to be_a(Hash)
     end
 
-    it 'sets the api_email correctly' do
-      expect(RubyApiPackCloudways.configuration.api_email).to eq('email@example.com')
-    end
-
-    it 'sets the api_key correctly' do
-      expect(RubyApiPackCloudways.configuration.api_key).to eq('api_key')
+    it 'fetches the list of packages' do
+      packages = RubyApiPackCloudways::Api::CwLists.cw_package_list
+      expect(packages).to be_a(Hash)
     end
   end
 end
