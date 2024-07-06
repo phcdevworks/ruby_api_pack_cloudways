@@ -1,9 +1,22 @@
 # frozen_string_literal: true
 
-require 'ruby_api_pack_cloudways/version'
-require 'ruby_api_pack_cloudways/cw_client'
+require 'faraday'
+require 'oj'
+
+# Load Configuration and API Files
+require_relative 'ruby_api_pack_cloudways/configuration'
+require_relative 'ruby_api_pack_cloudways/connection/cw_token'
+require_relative 'ruby_api_pack_cloudways/connection/cw_connect'
+require_relative 'ruby_api_pack_cloudways/api/cw_lists'
+require_relative 'ruby_api_pack_cloudways/api/cw_server'
 
 module RubyApiPackCloudways
-  # PHCDEVONE - Define a custom error class for the RubyApiPackCloudways module
-  class Error < StandardError; end
+  class << self
+    attr_accessor :configuration
+
+    def configure
+      self.configuration ||= Configuration.new
+      yield(configuration)
+    end
+  end
 end
