@@ -17,12 +17,14 @@ RSpec.describe RubyApiPackCloudways::Connection::CwToken do
 
   describe '#cw_api_token' do
     it 'returns an access token' do
-      allow(HTTParty).to receive(:post).and_return(instance_double(HTTParty::Response, body: '{"access_token":"fake_token"}'))
+      allow(HTTParty).to receive(:post).and_return(instance_double(HTTParty::Response,
+                                                                   body: '{"access_token":"fake_token"}'))
       expect(token.cw_api_token).to eq('fake_token')
     end
 
     it 'calls the correct endpoint' do
-      allow(HTTParty).to receive(:post).and_return(instance_double(HTTParty::Response, body: '{"access_token":"fake_token"}'))
+      allow(HTTParty).to receive(:post).and_return(instance_double(HTTParty::Response,
+                                                                   body: '{"access_token":"fake_token"}'))
       token.cw_api_token
       expect(HTTParty).to have_received(:post).with(
         'https://api.cloudways.com/api/v1/oauth/access_token',

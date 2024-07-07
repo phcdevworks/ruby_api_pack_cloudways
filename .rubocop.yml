@@ -34,6 +34,10 @@ Naming/FileName:
     - "*.yml"
     - "*.md"
 
+Layout/EndOfLine:
+  EnforcedStyle: lf
+  AutoCorrect: true
+
 Layout/LineLength:
   Max: 120
   AllowHeredoc: true
