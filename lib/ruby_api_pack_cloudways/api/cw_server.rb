@@ -5,9 +5,11 @@ module RubyApiPackCloudways
     class CwServer
       # Fetch the list of servers from the Cloudways API
       def self.cw_server_list
-        servers = Connection::CwConnect.new(RubyApiPackCloudways.configuration.api_url,
-                                            '/server').cloudways_api_connection
-        servers['servers']
+        fetch_list('/server')['servers']
+      end
+
+      def self.fetch_list(endpoint)
+        Connection::CwConnect.new(RubyApiPackCloudways.configuration.api_url, endpoint).cloudways_api_connection
       end
     end
   end
