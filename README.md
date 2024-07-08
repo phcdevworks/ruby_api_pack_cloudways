@@ -11,25 +11,51 @@ Easily connect to your Cloudways account through their API.
     
 #### Controller Example
     
-    # Load Gems & Files
-    require "ruby_api_pack_cloudways"
-
-    def index
-        @provider_list = RubyApiPackCloudways::Api::CwLists.cw_provider_list
+    def index 
+        @servers = RubyApiPackCloudways::Api::CwServer.cw_server_list
     end
   
 #### Example on Index File
 
-    <% @provider_list.each do |provider| %>
-        <%= provider["name"] %>
+    <% @servers.each do |server| %>
+        <p><%= server %></p>
     <% end %>
   
-#### Variables
+#### Intializer
   
-Set the following environment variables in your application:
+Set the following initalizer in your application:
   
-    export PHCDEV_API_CLOUDWAYS_EMAIL=your_cloudways_email_login
-    export PHCDEV_API_CLOUDWAYS_KEY=api_key_provided_by_cloudways
+    RubyApiPackCloudways.configure do |config|
+        config.api_url = Rails.application.credentials.dig(:cloudways, :api_url)
+        config.api_path_token = Rails.application.credentials.dig(:cloudways, :api_path_token)
+        config.api_email = Rails.application.credentials.dig(:cloudways, :api_email)
+        config.api_key = Rails.application.credentials.dig(:cloudways, :api_key)
+    end
   
-These variables should be configured with your Cloudways email login and API key provided by Cloudways.
+Open your credentials.yml.enc with your editor of choice in this case using VSCode:
   
+    EDITOR="code --wait" bin/rails credentials:edit
+  
+Add the following to your credentials.yml:
+  
+    cloudways:
+        api_url: 'https://api.cloudways.com/api/v1'
+        api_path_token: '/oauth/access_token'
+        api_email: 'Your Cloudways Email'
+        api_key: 'Your Cloudways API Key'
+    
+Some examples using tour editor of choice to open your credentials.yml.enc:
+    
+    EDITOR="atom --wait" bin/rails credentials:edit
+    
+    EDITOR="gedit --wait" bin/rails credentials:edit
+    
+    EDITOR="vim" bin/rails credentials:edit
+    
+    EDITOR="nano" bin/rails credentials:edit
+    
+    EDITOR="emacs" bin/rails credentials:edit
+    
+    EDITOR="subl -n -w" bin/rails credentials:edit
+    
+    EDITOR="mate -w" bin/rails credentials:edit
