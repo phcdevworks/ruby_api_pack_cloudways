@@ -4,8 +4,11 @@ require 'spec_helper'
 require 'ruby_api_pack_cloudways/api/cw_lists'
 
 RSpec.describe RubyApiPackCloudways::Api::CwLists do
+  let(:cw_connect_instance) { instance_double(RubyApiPackCloudways::Connection::CwConnect) }
+
   before do
-    allow_any_instance_of(RubyApiPackCloudways::Connection::CwConnect).to receive(:cloudways_api_connection).and_return(
+    allow(RubyApiPackCloudways::Connection::CwConnect).to receive(:new).and_return(cw_connect_instance)
+    allow(cw_connect_instance).to receive(:cloudways_api_connection).and_return(
       'providers' => ['provider1'],
       'sizes' => ['size1'],
       'apps' => ['app1'],
