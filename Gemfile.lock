@@ -2,7 +2,6 @@ PATH
   remote: .
   specs:
     ruby_api_pack_cloudways (0.1.0.pre.5)
-      faraday (~> 2.9)
       httparty (~> 0.22.0)
       oj (~> 3.16)
 
@@ -18,11 +17,6 @@ GEM
       rexml
     csv (3.3.0)
     diff-lcs (1.5.1)
-    faraday (2.10.0)
-      faraday-net_http (>= 2.0, < 3.2)
-      logger
-    faraday-net_http (3.1.0)
-      net-http
     hashdiff (1.1.0)
     httparty (0.22.0)
       csv
@@ -30,16 +24,13 @@ GEM
       multi_xml (>= 0.5.2)
     json (2.7.2)
     language_server-protocol (3.17.0.3)
-    logger (1.6.0)
     mini_mime (1.1.5)
     multi_xml (0.7.1)
       bigdecimal (~> 3.1)
-    net-http (0.4.1)
-      uri
     oj (3.16.4)
       bigdecimal (>= 3.0)
     parallel (1.25.1)
-    parser (3.3.3.0)
+    parser (3.3.4.0)
       ast (~> 2.4.1)
       racc
     public_suffix (6.0.0)
@@ -85,7 +76,6 @@ GEM
     ruby-progressbar (1.13.0)
     strscan (3.1.0)
     unicode-display_width (2.5.0)
-    uri (0.13.0)
     vcr (6.2.0)
     webmock (3.23.1)
       addressable (>= 2.8.0)
