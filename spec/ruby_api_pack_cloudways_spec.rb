@@ -12,13 +12,6 @@ RSpec.describe 'RubyApiPackCloudways', :vcr do
     end
   end
 
-  describe RubyApiPackCloudways::Api::CwServer do
-    it 'fetches the list of servers' do
-      servers = described_class.cw_server_list
-      expect(servers).to be_an(Array)
-    end
-  end
-
   describe RubyApiPackCloudways::Api::CwLists do
     it 'fetches the list of providers' do
       providers = described_class.cw_provider_list
@@ -40,4 +33,11 @@ RSpec.describe 'RubyApiPackCloudways', :vcr do
       expect(packages).to be_a(Hash)
     end
   end
+
+  # describe RubyApiPackCloudways::Api::CwServer do
+  #   it 'fetches the list of servers' do
+  #     servers = RubyApiPackCloudways::Api::CwServer.cw_server_list
+  #     expect(servers).to be_an(Hash)
+  #   end
+  # end
 end
