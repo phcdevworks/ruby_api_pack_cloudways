@@ -44,7 +44,7 @@ Add the following to your credentials.yml:
         api_email: 'Your Cloudways Email'
         api_key: 'Your Cloudways API Key'
     
-Some examples using tour editor of choice to open your credentials.yml.enc:
+Some examples using your editor of choice to open your credentials.yml.enc:
     
     EDITOR="atom --wait" bin/rails credentials:edit
     
