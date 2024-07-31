@@ -59,3 +59,5 @@ Some examples using tour editor of choice to open your credentials.yml.enc:
     EDITOR="subl -n -w" bin/rails credentials:edit
     
     EDITOR="mate -w" bin/rails credentials:edit
+  
+  [![Gem Version](https://badge.fury.io/rb/ruby_api_pack_cloudways.svg)](https://badge.fury.io/rb/ruby_api_pack_cloudways)
