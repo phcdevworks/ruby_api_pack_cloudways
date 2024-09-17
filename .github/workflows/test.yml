@@ -28,12 +28,7 @@ jobs:
         gem install bundler
         bundle install --verbose
 
-    # Step 4: Set up testing key
-    - name: Set up key for testing
-      run: |
-        echo "${{ secrets.PHCDEV_TEST_KEY }}" > spec/dummy/config/master.key
-
-    # Step 5: Run tests
+    # Step 4: Run tests
     - name: Run tests
       run: |
         bundle exec rspec --backtrace
