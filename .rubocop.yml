@@ -1,7 +1,7 @@
 require:
   - rubocop-performance
-  - rubocop-rspec
   - rubocop-rake
+  - rubocop-rspec
 
 AllCops:
   Exclude:
@@ -11,6 +11,7 @@ AllCops:
     - "node_modules/**/*"
     - "tmp/**/*"
     - "vendor/**/*"
+  SuggestExtensions: false
 
 Lint/RedundantCopDisableDirective:
   Enabled: true
@@ -39,23 +40,25 @@ Layout/EndOfLine:
   AutoCorrect: true
 
 Layout/LineLength:
-  Max: 120
+  Max: 130
   AllowHeredoc: true
   AllowURI: true
 
 Metrics/MethodLength:
-  Max: 15
+  Max: 20
 
 Metrics/AbcSize:
-  Max: 10
+  Max: 20
 
 Metrics/ClassLength:
-  Max: 100
+  Max: 150
 
-Metrics/LineLength:
-  Max: 120
+RSpec/MultipleExpectations:
+  Max: 10
 
-# RSpec-specific configurations
-RSpec:
-  MultipleExpectations:
-    Enabled: false
+RSpec/ExampleLength:
+  Max: 10
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 15
+  

@@ -7,7 +7,9 @@
 /spec/reports/
 /tmp/
 *.gem
-
-# rspec failure tracking
+/spec/dummy/log/*
+/spec/dummy/tmp/*
 .rspec_status
 /spec/vcr_cassettes/
+.env
+spec/dummy/config/master.key
