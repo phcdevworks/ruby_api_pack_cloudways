@@ -6,13 +6,12 @@
 
 ## Overview
 
-![Build Status](https://github.com/phcdevworks/ruby_api_pack_cloudways/actions/workflows/test.yml/badge.svg)
-![Gem Version](https://img.shields.io/gem/v/ruby_api_pack_cloudways.svg)
-![Last Commit](https://img.shields.io/github/last-commit/phcdevworks/ruby_api_pack_cloudways.svg)
 ![Issues](https://img.shields.io/github/issues/phcdevworks/ruby_api_pack_cloudways.svg)
 ![Dependabot Status](https://img.shields.io/badge/Dependabot-enabled-brightgreen.svg?logo=dependabot)
+[![codecov](https://codecov.io/gh/ruby_api_pack_cloudways/branch/main/graph/badge.svg)](https://codecov.io/gh/ruby_api_pack_cloudways)
+![Build Status](https://github.com/phcdevworks/ruby_api_pack_cloudways/actions/workflows/test.yml/badge.svg)
 [![CodeQL](https://github.com/phcdevworks/ruby_api_pack_cloudways/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/phcdevworks/ruby_api_pack_cloudways/actions/workflows/github-code-scanning/codeql)
-![Security Policy](https://img.shields.io/badge/Security-Policy-brightgreen.svg?logo=github)
+![Gem Version](https://img.shields.io/gem/v/ruby_api_pack_cloudways.svg)
 
 RubyApiPackCloudways is a Ruby gem that provides an easy interface for interacting with the Cloudways API. It includes functionality for fetching information about Cloudways providers, server sizes, apps, and packages, as well as managing server connections and authentication tokens.
 
@@ -44,7 +43,7 @@ end
 2. Save and restart your application.
 
 ## Installation
-
+  
 Add this line to your application's Gemfile:
 
 ```ruby
@@ -63,9 +62,10 @@ $ gem install ruby_api_pack_cloudways
 
 ## Contributing
 
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 [![contributors](https://contributors-img.web.app/image?repo=phcdevworks/ruby_api_pack_cloudways)](https://github.com/phcdevworks/ruby_api_pack_cloudways/graphs/contributors)
-
+![Last Commit](https://img.shields.io/github/last-commit/phcdevworks/ruby_api_pack_cloudways.svg)
+  
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 
 ## License
 
