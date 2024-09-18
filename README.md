@@ -1,4 +1,4 @@
-# PHCDevworks Accounts Stytch
+# PHCDevworks RubyApiPackCloudways
 
 ![Forks](https://img.shields.io/github/forks/phcdevworks/ruby_api_pack_cloudways.svg?style=social)
 ![Stars](https://img.shields.io/github/stars/phcdevworks/ruby_api_pack_cloudways.svg?style=social)
@@ -8,7 +8,7 @@
 
 ![Issues](https://img.shields.io/github/issues/phcdevworks/ruby_api_pack_cloudways.svg)
 ![Dependabot Status](https://img.shields.io/badge/Dependabot-enabled-brightgreen.svg?logo=dependabot)
-[![codecov](https://codecov.io/gh/ruby_api_pack_cloudways/branch/main/graph/badge.svg)](https://codecov.io/gh/ruby_api_pack_cloudways)
+[![codecov](https://codecov.io/gh/phcdevworks/ruby_api_pack_cloudways/graph/badge.svg?token=BEEHE8A5D1)](https://codecov.io/gh/phcdevworks/ruby_api_pack_cloudways)
 ![Build Status](https://github.com/phcdevworks/ruby_api_pack_cloudways/actions/workflows/test.yml/badge.svg)
 [![CodeQL](https://github.com/phcdevworks/ruby_api_pack_cloudways/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/phcdevworks/ruby_api_pack_cloudways/actions/workflows/github-code-scanning/codeql)
 ![Gem Version](https://img.shields.io/gem/v/ruby_api_pack_cloudways.svg)
