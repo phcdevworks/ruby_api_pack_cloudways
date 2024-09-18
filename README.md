@@ -6,6 +6,9 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 ![Last Commit](https://img.shields.io/github/last-commit/phcdevworks/ruby_api_pack_cloudways.svg)
 ![Issues](https://img.shields.io/github/issues/phcdevworks/ruby_api_pack_cloudways.svg)
+![Dependabot Status](https://img.shields.io/badge/Dependabot-enabled-brightgreen.svg?logo=dependabot)
+![Code Scanning Status](https://github.com/phcdevworks/ruby_api_pack_cloudways/actions/workflows/codeql-analysis.yml/badge.svg)
+![Security Policy](https://img.shields.io/badge/Security-Policy-brightgreen.svg?logo=github)
   
 ![Forks](https://img.shields.io/github/forks/phcdevworks/ruby_api_pack_cloudways.svg?style=social)
 ![Stars](https://img.shields.io/github/stars/phcdevworks/ruby_api_pack_cloudways.svg?style=social)
