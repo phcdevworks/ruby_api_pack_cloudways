@@ -6,7 +6,9 @@ The table below lists the versions of the project that are currently supported w
   
 | Version        | Supported          |
 | -------------- | ------------------ |
-| 0.1.0.pre.3    | :white_check_mark: |
+| 0.1.0.pre.5    | :white_check_mark: |
+| 0.1.0.pre.4    | :x:                |
+| 0.1.0.pre.3    | :x:                |
 | < 0.1.0.pre.3  | :x:                |
   
 ## Reporting a Vulnerability
