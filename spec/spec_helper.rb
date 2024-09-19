@@ -5,6 +5,7 @@ SimpleCov.start do
   add_filter '/spec/'
   add_filter 'lib/ruby_api_pack_cloudways/version'
   track_files 'lib/ruby_api_pack_cloudways/**/*.rb'
+  enable_coverage :branch
 end
 
 require 'ruby_api_pack_cloudways'
