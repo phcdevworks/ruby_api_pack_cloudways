@@ -30,14 +30,22 @@ jobs:
         gem install bundler
         bundle install
 
-    # Step 4: Run tests with SimpleCov for coverage
+    # Step 4: Run tests with SimpleCov for coverage and generate RSpec results
     - name: Run tests and generate coverage
       run: |
-        bundle exec rspec
+        mkdir -p tmp
+        bundle exec rspec --format json --out tmp/rspec_results.json
 
-    # Step 5: Upload coverage to Codecov
+    # Step 5: Upload RSpec test results (test analytics)
+    - name: Upload RSpec test results
+      uses: actions/upload-artifact@v3
+      with:
+        name: rspec-results
+        path: tmp/rspec_results.json
+
+    # Step 6: Upload coverage to Codecov
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
       with:
-        file: coverage/.resultset.json
+        files: coverage/.resultset.json
         token: ${{ secrets.CODECOV_TOKEN }}
