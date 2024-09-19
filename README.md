@@ -63,11 +63,12 @@ $ gem install ruby_api_pack_cloudways
 ## Contributing
 
 [![contributors](https://contributors-img.web.app/image?repo=phcdevworks/ruby_api_pack_cloudways)](https://github.com/phcdevworks/ruby_api_pack_cloudways/graphs/contributors)
-![Last Commit](https://img.shields.io/github/last-commit/phcdevworks/ruby_api_pack_cloudways.svg)
   
+![Last Commit](https://img.shields.io/github/last-commit/phcdevworks/ruby_api_pack_cloudways.svg)
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 
 ## License
 
-![License](https://img.shields.io/github/license/phcdevworks/ruby_api_pack_cloudways.svg)
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+  
+![License](https://img.shields.io/github/license/phcdevworks/ruby_api_pack_cloudways.svg)
