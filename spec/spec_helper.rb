@@ -1,13 +1,15 @@
 # frozen_string_literal: true
 
-require 'ruby_api_pack_cloudways'
 require 'simplecov'
-require 'vcr'
-require 'webmock/rspec'
-
 SimpleCov.start do
   add_filter '/spec/'
+  add_filter 'lib/ruby_api_pack_cloudways/version'
+  track_files 'lib/ruby_api_pack_cloudways/**/*.rb'
 end
+
+require 'ruby_api_pack_cloudways'
+require 'vcr'
+require 'webmock/rspec'
 
 VCR.configure do |config|
   config.cassette_library_dir = 'spec/vcr_cassettes'

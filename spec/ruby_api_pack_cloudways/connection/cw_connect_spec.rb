@@ -26,5 +26,30 @@ RSpec.describe RubyApiPackCloudways::Connection::CwConnect do
       response = connection.cloudways_api_connection
       expect(response['data']).to eq('value')
     end
+
+    context 'when the response code is not 200' do
+      let(:error_response) { instance_double(HTTParty::Response, code: 500, body: '{"error":"Server error"}') }
+
+      before do
+        allow(HTTParty).to receive(:get).and_return(error_response)
+      end
+
+      it 'raises an error with the response code' do
+        expect { connection.cloudways_api_connection }.to raise_error('Error: Received status 500')
+      end
+    end
+
+    context 'when parsing the response fails' do
+      let(:faulty_response) { instance_double(HTTParty::Response, code: 200, body: 'invalid_json') }
+
+      before do
+        allow(HTTParty).to receive(:get).and_return(faulty_response)
+        allow(Oj).to receive(:load).and_raise(Oj::ParseError.new('Unexpected character'))
+      end
+
+      it 'raises a parsing error' do
+        expect { connection.cloudways_api_connection }.to raise_error(/Error parsing response: Unexpected character/)
+      end
+    end
   end
 end
