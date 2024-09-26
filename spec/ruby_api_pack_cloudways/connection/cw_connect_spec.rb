@@ -14,8 +14,9 @@ RSpec.describe RubyApiPackCloudways::Connection::CwConnect do
   end
 
   describe '#cloudways_api_connection' do
-    it 'creates a HTTParty connection' do
+    it 'creates a HTTParty GET connection' do
       connection.cloudways_api_connection
+
       expect(HTTParty).to have_received(:get).with(
         'https://api.cloudways.com/api/v1/some_path',
         headers: { 'Authorization' => 'Bearer fake_token' }

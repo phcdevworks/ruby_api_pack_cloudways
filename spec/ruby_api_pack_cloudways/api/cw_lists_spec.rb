@@ -8,38 +8,48 @@ RSpec.describe RubyApiPackCloudways::Api::CwLists do
 
   before do
     allow(RubyApiPackCloudways::Connection::CwConnect).to receive(:new).and_return(cw_connect_instance)
-    allow(cw_connect_instance).to receive(:cloudways_api_connection).and_return(
-      'providers' => ['provider1'],
-      'sizes' => ['size1'],
-      'apps' => ['app1'],
-      'packages' => ['package1']
-    )
   end
 
-  describe '.cw_provider_list' do
+  describe '.provider_list' do
     it 'returns a list of providers' do
-      providers = described_class.cw_provider_list
+      allow(cw_connect_instance).to receive(:cloudways_api_connection).and_return(
+        'providers' => ['provider1']
+      )
+
+      providers = described_class.provider_list
       expect(providers).to eq(['provider1'])
     end
   end
 
-  describe '.cw_server_size_list' do
+  describe '.server_size_list' do
     it 'returns a list of server sizes' do
-      sizes = described_class.cw_server_size_list
+      allow(cw_connect_instance).to receive(:cloudways_api_connection).and_return(
+        'sizes' => ['size1']
+      )
+
+      sizes = described_class.server_size_list
       expect(sizes).to eq(['size1'])
     end
   end
 
-  describe '.cw_app_list' do
+  describe '.app_list' do
     it 'returns a list of apps' do
-      apps = described_class.cw_app_list
+      allow(cw_connect_instance).to receive(:cloudways_api_connection).and_return(
+        'apps' => ['app1']
+      )
+
+      apps = described_class.app_list
       expect(apps).to eq(['app1'])
     end
   end
 
-  describe '.cw_package_list' do
+  describe '.package_list' do
     it 'returns a list of packages' do
-      packages = described_class.cw_package_list
+      allow(cw_connect_instance).to receive(:cloudways_api_connection).and_return(
+        'packages' => ['package1']
+      )
+
+      packages = described_class.package_list
       expect(packages).to eq(['package1'])
     end
   end

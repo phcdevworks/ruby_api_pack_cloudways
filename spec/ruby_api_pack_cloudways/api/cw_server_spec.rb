@@ -8,12 +8,15 @@ RSpec.describe RubyApiPackCloudways::Api::CwServer do
 
   before do
     allow(RubyApiPackCloudways::Connection::CwConnect).to receive(:new).and_return(cw_connect_instance)
-    allow(cw_connect_instance).to receive(:cloudways_api_connection).and_return('servers' => ['server1'])
   end
 
-  describe '.cw_server_list' do
+  describe '.server_list' do
     it 'returns a list of servers' do
-      servers = described_class.cw_server_list
+      allow(cw_connect_instance).to receive(:cloudways_api_connection).and_return(
+        'servers' => ['server1']
+      )
+
+      servers = described_class.server_list
       expect(servers).to eq(['server1'])
     end
   end
