@@ -78,7 +78,7 @@ If there are any issues, please resolve them before submitting your pull request
 
 ### 3. Code Organization
 
-- Place any new Stytch-specific services in the `lib/ruby_api_pack_cloudways/` folder.
+- Place any new services in the `lib/ruby_api_pack_cloudways/` folder.
 - Follow the same structure for methods in service classes and modules, ensuring maintainability across features.
 - Keep code DRY (Don’t Repeat Yourself). If something is reusable, refactor it into a shared method or module.
 
