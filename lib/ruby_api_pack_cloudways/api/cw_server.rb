@@ -3,7 +3,7 @@
 module RubyApiPackCloudways
   module Api
     class CwServer
-      def self.cw_server_list
+      def self.server_list
         fetch_list('/server')['servers']
       end
 

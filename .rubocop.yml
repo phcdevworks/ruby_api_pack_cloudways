@@ -61,4 +61,6 @@ RSpec/ExampleLength:
 
 RSpec/MultipleMemoizedHelpers:
   Max: 15
-  
+
+RSpec/ExampleLength:
+  Max: 15

@@ -28,7 +28,11 @@ RSpec.configure do |config|
       c.api_key = ENV['CLOUDWAYS_API_KEY']
     end
   end
-
+  config.example_status_persistence_file_path = '.rspec_status'
+  config.disable_monkey_patching!
+  config.expect_with :rspec do |c|
+    c.syntax = :expect
+  end
   config.before do
     puts "CLOUDWAYS_API_URL: #{ENV['CLOUDWAYS_API_URL']}"
     puts "CLOUDWAYS_API_PATH_TOKEN: #{ENV['CLOUDWAYS_API_PATH_TOKEN']}"
