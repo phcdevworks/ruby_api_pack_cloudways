@@ -2,7 +2,6 @@
 
 ![Forks](https://img.shields.io/github/forks/phcdevworks/ruby_api_pack_cloudways.svg?style=social)
 ![Stars](https://img.shields.io/github/stars/phcdevworks/ruby_api_pack_cloudways.svg?style=social)
-[![Tweet](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Fphcdevworks%2Fruby_api_pack_cloudways)](https://twitter.com/intent/tweet?text=Check%20out%20this%20authentication%20gem%20for%20Rails%20integrating%20with%20Stytch!%20https://github.com/phcdevworks/ruby_api_pack_cloudways)
 
 ## Overview
 
