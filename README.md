@@ -58,6 +58,10 @@ Or install it yourself as:
 ```bash
 $ gem install ruby_api_pack_cloudways
 ```
+# Documentation Wiki
+
+- [Home](https://github.com/phcdevworks/ruby_api_pack_cloudways/wiki)
+- [Server Endpoints](https://github.com/phcdevworks/ruby_api_pack_cloudways/wiki/Cloudways-API-Ruby-Server-Endpoint-Client)
 
 ## Contributing
 
