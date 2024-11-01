@@ -6,11 +6,11 @@ module RubyApiPackCloudways
       # Server endpoints
       ENDPOINTS = {
         list: '/server',
-        details: '/server/details',
         attach_block_storage: '/server/attach_block_storage',
         clone: '/server/clone',
         create: '/server/create',
         delete: '/server/delete',
+        details: '/server/details',
         disk_usage: '/server/disk_usage',
         restart: '/server/restart',
         scale_block_storage: '/server/scale_block_storage',
@@ -24,11 +24,6 @@ module RubyApiPackCloudways
       # List all servers
       def self.server_list
         fetch_list(ENDPOINTS[:list])['servers']
-      end
-
-      # Get server details
-      def self.server_details(server_id)
-        fetch_with_id(ENDPOINTS[:details], server_id)
       end
 
       # Attach block storage to a server
@@ -59,6 +54,11 @@ module RubyApiPackCloudways
       # Restart a server
       def self.restart_server(server_id)
         fetch_with_id(ENDPOINTS[:restart], server_id)
+      end
+
+      # Get server details
+      def self.server_details(server_id)
+        fetch_with_id(ENDPOINTS[:details], server_id)
       end
 
       # Scale block storage of a server
