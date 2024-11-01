@@ -24,7 +24,7 @@ module RubyApiPackCloudways
       private
 
       def parse_response(response)
-        Oj.load(response.body)
+        Oj.load(response.body, mode: :strict)
       rescue Oj::ParseError => e
         raise "Error parsing response: #{e.message}"
       end
