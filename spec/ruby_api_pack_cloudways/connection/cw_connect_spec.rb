@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
-require 'ruby_api_pack_cloudways/connection/cw_connect'
-
 RSpec.describe RubyApiPackCloudways::Connection::CwConnect do
   let(:connection) { described_class.new('https://api.cloudways.com/api/v1', '/some_path') }
   let(:token_instance) { instance_double(RubyApiPackCloudways::Connection::CwToken, cw_api_token: 'fake_token') }
@@ -11,8 +8,7 @@ RSpec.describe RubyApiPackCloudways::Connection::CwConnect do
 
   before do
     allow(RubyApiPackCloudways::Connection::CwToken).to receive(:new).and_return(token_instance)
-    allow(HTTParty).to receive(:get).and_return(http_response)
-    allow(HTTParty).to receive(:post).and_return(http_response)
+    allow(HTTParty).to receive_messages(get: http_response, post: http_response)
   end
 
   describe '#cloudways_api_connection' do
@@ -21,7 +17,9 @@ RSpec.describe RubyApiPackCloudways::Connection::CwConnect do
 
       expect(HTTParty).to have_received(:get).with(
         'https://api.cloudways.com/api/v1/some_path',
-        headers: { 'Authorization' => 'Bearer fake_token' }
+        headers: { 'Authorization' => 'Bearer fake_token' },
+        ssl_version: :TLSv1_2,
+        debug_output: $stdout
       )
     end
 
@@ -66,7 +64,9 @@ RSpec.describe RubyApiPackCloudways::Connection::CwConnect do
           'Authorization' => 'Bearer fake_token',
           'Content-Type' => 'application/json'
         },
-        body: post_params.to_json
+        body: post_params.to_json,
+        ssl_version: :TLSv1_2,
+        debug_output: $stdout
       )
     end
 

@@ -53,6 +53,9 @@ Metrics/AbcSize:
 Metrics/ClassLength:
   Max: 150
 
+Naming/VariableNumber:
+  Enabled: false
+
 RSpec/MultipleExpectations:
   Max: 10
 

@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+require 'httparty'
+require 'oj'
+require 'openssl'
+
 module RubyApiPackCloudways
   module Connection
     class CwConnect
@@ -17,7 +21,9 @@ module RubyApiPackCloudways
         token = CwToken.new.cw_api_token
         response = HTTParty.get(
           "#{@cw_api_url_base}#{@cw_api_path}",
-          headers: { 'Authorization' => "Bearer #{token}" }
+          headers: { 'Authorization' => "Bearer #{token}" },
+          ssl_version: :TLSv1_2,
+          debug_output: $stdout
         )
         handle_response(response)
       end
@@ -28,7 +34,9 @@ module RubyApiPackCloudways
         response = HTTParty.post(
           "#{@cw_api_url_base}#{@cw_api_path}",
           headers: { 'Authorization' => "Bearer #{token}", 'Content-Type' => 'application/json' },
-          body: params.to_json
+          body: params.to_json,
+          ssl_version: :TLSv1_2,
+          debug_output: $stdout
         )
         handle_response(response)
       end
