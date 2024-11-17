@@ -26,6 +26,11 @@ module RubyApiPackCloudways
           debug_output: $stdout
         )
         handle_response(response)
+      rescue RuntimeError => e
+        raise unless e.message.include?('Rate limit exceeded')
+
+        sleep(60)
+        retry
       end
 
       # POST request to Cloudways API
@@ -55,7 +60,9 @@ module RubyApiPackCloudways
 
       # Parse response from Cloudways API
       def parse_response(response)
-        puts "Raw response body: #{response.body}"
+        content_type = response.headers['content-type']
+        raise "Unexpected response: #{response.body}" unless content_type&.include?('application/json')
+
         Oj.load(response.body, mode: :strict)
       rescue Oj::ParseError => e
         raise "Error parsing response: #{e.message}. Raw body: #{response.body}"
