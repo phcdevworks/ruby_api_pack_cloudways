@@ -3,7 +3,14 @@
 RSpec.describe RubyApiPackCloudways::Connection::CwConnect do
   let(:connection) { described_class.new('https://api.cloudways.com/api/v1', '/some_path') }
   let(:token_instance) { instance_double(RubyApiPackCloudways::Connection::CwToken, cw_api_token: 'fake_token') }
-  let(:http_response) { instance_double(HTTParty::Response, code: 200, body: '{"data":"value"}') }
+  let(:http_response) do
+    instance_double(
+      HTTParty::Response,
+      code: 200,
+      body: '{"data":"value"}',
+      headers: { 'content-type' => 'application/json' }
+    )
+  end
   let(:post_params) { { key: 'value' } }
 
   before do
@@ -29,7 +36,14 @@ RSpec.describe RubyApiPackCloudways::Connection::CwConnect do
     end
 
     context 'when the response code is not 200' do
-      let(:error_response) { instance_double(HTTParty::Response, code: 500, body: '{"error":"Server error"}') }
+      let(:error_response) do
+        instance_double(
+          HTTParty::Response,
+          code: 500,
+          body: '{"error":"Server error"}',
+          headers: { 'content-type' => 'application/json' }
+        )
+      end
 
       before do
         allow(HTTParty).to receive(:get).and_return(error_response)
@@ -41,7 +55,14 @@ RSpec.describe RubyApiPackCloudways::Connection::CwConnect do
     end
 
     context 'when parsing the response fails' do
-      let(:faulty_response) { instance_double(HTTParty::Response, code: 200, body: 'invalid_json') }
+      let(:faulty_response) do
+        instance_double(
+          HTTParty::Response,
+          code: 200,
+          body: 'invalid_json',
+          headers: { 'content-type' => 'application/json' }
+        )
+      end
 
       before do
         allow(HTTParty).to receive(:get).and_return(faulty_response)
@@ -50,6 +71,41 @@ RSpec.describe RubyApiPackCloudways::Connection::CwConnect do
 
       it 'raises a parsing error' do
         expect { connection.cloudways_api_connection }.to raise_error(/Error parsing response: Unexpected character/)
+      end
+    end
+
+    context 'when rate limit is exceeded' do
+      let(:rate_limit_error) { RuntimeError.new('Rate limit exceeded') }
+
+      before do
+        attempts = 0
+        allow(HTTParty).to receive(:get).and_wrap_original do |original_method, *args|
+          attempts += 1
+          raise rate_limit_error if attempts == 1
+
+          instance_double(
+            HTTParty::Response,
+            code: 200,
+            body: '{"data":"value"}',
+            headers: { 'content-type' => 'application/json' }
+          )
+        end
+      end
+
+      it 'retries after a rate limit error and succeeds' do
+        response = connection.cloudways_api_connection
+        expect(response['data']).to eq('value')
+        expect(HTTParty).to have_received(:get).twice # Confirms retry occurred
+      end
+    end
+
+    context 'when an unexpected runtime error occurs' do
+      before do
+        allow(HTTParty).to receive(:get).and_raise(RuntimeError, 'Unexpected error')
+      end
+
+      it 'raises the unexpected runtime error' do
+        expect { connection.cloudways_api_connection }.to raise_error(RuntimeError, 'Unexpected error')
       end
     end
   end
@@ -76,7 +132,14 @@ RSpec.describe RubyApiPackCloudways::Connection::CwConnect do
     end
 
     context 'when the POST response code is not 200' do
-      let(:error_response) { instance_double(HTTParty::Response, code: 500, body: '{"error":"Server error"}') }
+      let(:error_response) do
+        instance_double(
+          HTTParty::Response,
+          code: 500,
+          body: '{"error":"Server error"}',
+          headers: { 'content-type' => 'application/json' }
+        )
+      end
 
       before do
         allow(HTTParty).to receive(:post).and_return(error_response)
@@ -88,7 +151,14 @@ RSpec.describe RubyApiPackCloudways::Connection::CwConnect do
     end
 
     context 'when parsing the POST response fails' do
-      let(:faulty_response) { instance_double(HTTParty::Response, code: 200, body: 'invalid_json') }
+      let(:faulty_response) do
+        instance_double(
+          HTTParty::Response,
+          code: 200,
+          body: 'invalid_json',
+          headers: { 'content-type' => 'application/json' }
+        )
+      end
 
       before do
         allow(HTTParty).to receive(:post).and_return(faulty_response)
@@ -100,6 +170,69 @@ RSpec.describe RubyApiPackCloudways::Connection::CwConnect do
           connection.cloudways_api_post_connection(post_params)
         end.to raise_error(/Error parsing response: Unexpected character/)
       end
+    end
+  end
+
+  describe '#parse_response' do
+    let(:valid_response) do
+      instance_double(
+        HTTParty::Response,
+        body: '{"key":"value"}',
+        headers: { 'content-type' => 'application/json' }
+      )
+    end
+
+    let(:invalid_response_missing_content_type) do
+      instance_double(
+        HTTParty::Response,
+        body: '{"key":"value"}',
+        headers: nil
+      )
+    end
+
+    let(:invalid_response_wrong_content_type) do
+      instance_double(
+        HTTParty::Response,
+        body: '{"key":"value"}',
+        headers: { 'content-type' => 'text/html' }
+      )
+    end
+
+    let(:invalid_json_response) do
+      instance_double(
+        HTTParty::Response,
+        body: 'invalid_json',
+        headers: { 'content-type' => 'application/json' }
+      )
+    end
+
+    it 'parses the response body successfully when content-type is application/json' do
+      result = connection.send(:parse_response, valid_response)
+      expect(result).to eq({ 'key' => 'value' })
+    end
+
+    it 'raises an error when content-type is missing' do
+      invalid_response_missing_content_type = instance_double(
+        HTTParty::Response,
+        body: '{"key":"value"}',
+        headers: nil
+      )
+      expect do
+        connection.send(:parse_response, invalid_response_missing_content_type)
+      end.to raise_error(/Unexpected response/)
+    end
+
+    it 'raises an error when content-type does not include application/json' do
+      expect do
+        connection.send(:parse_response, invalid_response_wrong_content_type)
+      end.to raise_error(/Unexpected response/)
+    end
+
+    it 'raises a parsing error when Oj fails to parse the response body' do
+      allow(Oj).to receive(:load).and_raise(Oj::ParseError, 'Unexpected character')
+      expect do
+        connection.send(:parse_response, invalid_json_response)
+      end.to raise_error(/Error parsing response: Unexpected character/)
     end
   end
 end
