@@ -60,7 +60,7 @@ module RubyApiPackCloudways
 
       # Parse response from Cloudways API
       def parse_response(response)
-        content_type = response.headers['content-type']
+        content_type = response.headers&.fetch('content-type', nil)
         raise "Unexpected response: #{response.body}" unless content_type&.include?('application/json')
 
         Oj.load(response.body, mode: :strict)
