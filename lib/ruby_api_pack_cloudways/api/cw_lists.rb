@@ -33,7 +33,9 @@ module RubyApiPackCloudways
 
       # Fetch list of supported countries
       def self.country_list
-        validate_response(fetch_resource(ENDPOINTS[:countries]), 'countries')
+        response = fetch_resource(ENDPOINTS[:countries])
+        wrapped_response = { 'countries' => response } if response.is_a?(Array)
+        validate_response(wrapped_response || response, 'countries')
       end
 
       # Fetch list of monitoring durations
