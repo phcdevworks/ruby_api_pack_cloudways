@@ -4,6 +4,7 @@ require 'httparty'
 require 'oj'
 
 require_relative 'ruby_api_pack_cloudways/configuration'
+require_relative 'ruby_api_pack_cloudways/handlers/response_validator'
 require_relative 'ruby_api_pack_cloudways/connection/cw_token'
 require_relative 'ruby_api_pack_cloudways/connection/cw_connect'
 require_relative 'ruby_api_pack_cloudways/api/cw_lists'
