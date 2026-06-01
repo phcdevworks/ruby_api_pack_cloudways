@@ -1,44 +1,44 @@
 # Security Policy
-  
+
 ## Supported Versions
-  
-The table below lists the versions of the project that are currently supported with security updates.
-  
-| Version        | Supported          |
-| -------------- | ------------------ |
-| 0.1.0.pre.5    | :white_check_mark: |
-| 0.1.0.pre.4    | :x:                |
-| 0.1.0.pre.3    | :x:                |
-| < 0.1.0.pre.3  | :x:                |
-  
+
+PHCDevworks applies security fixes to the current release line of this gem.
+Please use the latest published version of `ruby_api_pack_cloudways` whenever
+possible.
+
 ## Reporting a Vulnerability
-  
-To report a vulnerability, please follow these steps:
-  
-### 1. Contact Information:
-  
-Email your findings to: development@phcdevworks.com
-  
-### 2. Information to Include:
-  
-* Description of the vulnerability
-* Steps to reproduce the issue
-* Potential impact of the vulnerability
-* Any possible fixes or suggestions for addressing the issue
-  
-### 3. Response Time:
-  
-* You can expect an initial response within 48 hours of your report.
-* Regular updates will be provided every 72 hours until the issue is resolved.
-  
-### 4. Handling of the Report:
-  
-* If the vulnerability is accepted, we will work on a fix and inform you once it has been patched.
-* If the vulnerability is declined, we will provide a detailed explanation for the decision.
-  
-### 5. Confidentiality:
-  
-Your report will be handled with strict confidentiality. We will not share any details of the vulnerability without your permission.
-  
-Thank you for helping to keep our project secure.
-  
+
+Do not open a public issue for security problems.
+
+Use GitHub Security Advisories for this repository whenever possible. If that
+is not available, contact the maintainers through GitHub.
+
+Include:
+
+1. A clear description of the issue and its impact
+2. Steps to reproduce or a proof of concept
+3. Affected versions, if known
+4. Any suggested mitigation
+
+## Response Expectations
+
+1. We aim to acknowledge reports within 48 hours.
+2. We aim to provide an initial assessment within 5 business days.
+3. We will coordinate disclosure timing with the reporter when possible.
+
+## Security Guidance
+
+- Store Cloudways API keys in Rails credentials, environment variables, or a
+  secure deployment secret manager.
+- Do not commit Cloudways API keys, OAuth access tokens, production account
+  identifiers, live server identifiers, or raw production API responses.
+- Keep Ruby, Bundler, HTTParty, Oj, and test dependencies up to date.
+- Review automated dependency updates and advisories before release.
+- Avoid enabling HTTP debug output in production logs when it could expose
+  request or response material.
+- Use WebMock or VCR with sanitized fixtures for tests.
+
+## Contact
+
+For non-sensitive security questions, open an issue or discussion in this
+repository.

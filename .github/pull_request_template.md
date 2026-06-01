@@ -1,32 +1,25 @@
-## Description
+## Summary
 
-<!-- Please include a summary of the changes and the related issue. Mention if this PR addresses any issue using `Fixes #issue_number`. -->
+- [ ] Linked issue (or `N/A`)
+- [ ] Summary of changes
+- [ ] Change classification: `additive` / `behavior change` / `breaking` / `docs/config only`
 
 ## Type of Change
 
-<!-- Please select the type of change and remove unnecessary options. -->
-- [ ] Bug fix
-- [ ] New feature
-- [ ] Breaking change
-- [ ] Refactor
-- [ ] Documentation update
+- [ ] Cloudways API wrapper change
+- [ ] Connection or token handling change
+- [ ] Breaking public API change
+- [ ] Documentation / config only
+- [ ] Refactor (no behavior change)
 
 ## Checklist
 
-<!-- Please check the boxes below to confirm you've completed these steps. -->
+- [ ] `bundle exec rspec` passes
+- [ ] `bundle exec rubocop` passes
+- [ ] `gem build ruby_api_pack_cloudways.gemspec` succeeds when release surface changed
+- [ ] Specs added or updated for behavior changes
+- [ ] `README.md` updated if public usage changed
+- [ ] `CHANGELOG.md [Unreleased]` updated
+- [ ] No Cloudways API keys, OAuth tokens, production server IDs, or raw live API payloads are committed
 
-- [ ] I have created a branch for this PR (not from the `main` branch).
-- [ ] I have run the test suite (`bundle exec rspec`) and ensured that all tests pass.
-- [ ] I have added/updated corresponding tests where applicable.
-- [ ] I have adhered to the [code standards](CONTRIBUTING.md#code-standards).
-- [ ] I have documented my changes (if necessary).
-- [ ] I have updated the documentation (if necessary).
-
-## Screenshots (if applicable)
-
-<!-- If this PR includes changes that affect the UI, please include screenshots or a GIF to help reviewers understand the visual impact. -->
-
-## Additional Comments
-
-<!-- Add any additional information or context about your PR here. -->
-
+## Notes for Reviewers

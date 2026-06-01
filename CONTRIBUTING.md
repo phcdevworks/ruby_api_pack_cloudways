@@ -1,171 +1,107 @@
-# Contributing to RubyApiPackCloudways
+# Contributing to Ruby API Pack Cloudways
 
-Thank you for considering contributing to our Cloudways API integration project! We appreciate your help in improving this project and following these guidelines to maintain code quality and consistency.
+Thanks for helping improve `ruby_api_pack_cloudways`. This gem is maintained by
+PHCDevworks as a Ruby/Rails-friendly wrapper around Cloudways API access.
 
-## Table of Contents
+## Development Setup
 
-1. [Project Setup](#project-setup)
-2. [Code Standards](#code-standards)
-3. [Commit Messages](#commit-messages)
-4. [Pull Requests](#pull-requests)
-5. [Testing](#testing)
-6. [Reporting Issues](#reporting-issues)
-7. [Code of Conduct](#code-of-conduct)
+1. Clone the repository.
+2. Install dependencies with `bundle install`.
+3. Configure test credentials through environment variables only when live API
+   verification is explicitly needed.
+4. Run `bundle exec rspec`.
+5. Run `bundle exec rubocop`.
 
-## Project Setup
+## Project Structure
 
-To contribute, please follow these steps to set up the development environment.
+- `lib/ruby_api_pack_cloudways.rb`: public entry point and configuration hook
+- `lib/ruby_api_pack_cloudways/configuration.rb`: Cloudways API configuration
+- `lib/ruby_api_pack_cloudways/connection/`: token and HTTP connection classes
+- `lib/ruby_api_pack_cloudways/api/`: endpoint wrapper classes
+- `lib/ruby_api_pack_cloudways/handlers/`: response validation helpers
+- `spec/`: RSpec coverage for API wrappers, connection behavior, and handlers
 
-### 1. Fork the Repository
+## Contribution Guidelines
 
-First, fork the repository to your GitHub account and clone it locally.
+### API wrapper changes
 
-```bash
-git clone git@github.com:your-username/ruby_api_pack_cloudways.git
-cd ruby_api_pack_cloudways
-```
+1. Keep public method names stable unless the change is intentionally breaking.
+2. Add or update focused RSpec coverage for each endpoint behavior change.
+3. Keep Cloudways response parsing and validation predictable.
+4. Avoid host application assumptions; this gem should stay framework-light and
+   Rails-compatible.
+5. Do not log or commit Cloudways API keys, access tokens, account identifiers,
+   server identifiers from production accounts, or live response payloads.
 
-### 2. Install Dependencies
+### Connection and token changes
 
-Install the required dependencies using `bundler`.
+1. Keep token fetching centralized in `Connection::CwToken`.
+2. Keep authenticated HTTP behavior centralized in `Connection::CwConnect`.
+3. Add specs for success, failure, parsing, and retry paths.
+4. Update `README.md` when configuration or public usage changes.
+5. Update `CHANGELOG.md` under `[Unreleased]` for behavior-impacting changes.
 
-```bash
-bundle install
-```
+### Code and tooling
 
-### 3. Set Up Cloudways Credentials
+- Follow the repo's RuboCop configuration.
+- Prefer small, pattern-aligned changes.
+- Keep comments brief and only add them when they explain a non-obvious reason.
+- Preserve unrelated local changes.
+- Do not create commits unless explicitly asked.
 
-You'll need valid Cloudways API credentials to run the application. Configure these credentials using the gem's configuration block:
+## Behavior-Impacting Change Checklist
 
-```ruby
-RubyApiPackCloudways.configure do |config|
-  config.api_url = '<YOUR_CLOUDWAYS_API_URL>'
-  config.api_path_token = '<YOUR_TOKEN_PATH>'
-  config.api_email = '<YOUR_CLOUDWAYS_EMAIL>'
-  config.api_key = '<YOUR_CLOUDWAYS_API_KEY>'
-end
-```
+Use this checklist when touching any public behavior surface:
 
-### 4. Run the Tests
+- `lib/ruby_api_pack_cloudways.rb`
+- `lib/ruby_api_pack_cloudways/configuration.rb`
+- `lib/ruby_api_pack_cloudways/connection/`
+- `lib/ruby_api_pack_cloudways/api/`
+- `lib/ruby_api_pack_cloudways/handlers/`
+- `README.md`
 
-Ensure that everything is working by running the test suite.
+Before merge:
 
-```bash
-bundle exec rspec
-```
+1. Update or add focused specs.
+2. Run `bundle exec rspec`.
+3. Run `bundle exec rubocop`.
+4. Build the gem with `gem build ruby_api_pack_cloudways.gemspec`.
+5. Update `README.md` if installation, configuration, endpoint, or usage
+   guidance changed.
+6. Update `CHANGELOG.md` under `[Unreleased]`.
+7. Classify the change as additive, behavior change, breaking, or docs/config
+   only in the pull request.
+8. Confirm no secrets or sensitive identifiers appear in logs, fixtures, docs,
+   VCR cassettes, or examples.
 
-## Code Standards
+## Pull Request Checklist
 
-We follow Ruby best practices and conventions. Ensure your code adheres to the following:
+1. Keep the change focused.
+2. Fill out every section of `.github/pull_request_template.md`.
+3. Link an issue or write `N/A`.
+4. Include a concise summary and reviewer notes.
+5. Leave blocked checklist items unchecked with a short note.
 
-### 1. Linting
+## Release Hygiene
 
-Before submitting any code, run `rubocop` to ensure it adheres to our style guidelines.
+For maintainers, a release should keep these records aligned:
 
-### 2. Code Format
+1. Update `lib/ruby_api_pack_cloudways/version.rb`.
+2. Move relevant `CHANGELOG.md` `[Unreleased]` notes into a dated version entry.
+3. Build the gem from the matching source state.
+4. Publish release notes from the matching changelog entry.
+5. Publish to RubyGems only from the reviewed release state.
 
-```bash
-bundle exec rubocop
-```
+## Questions
 
-If there are any issues, please resolve them before submitting your pull request.
-
-### 2. Code Format
-
-- **Ruby Version**: Ensure that your code is compatible with Ruby version `>= 3.1.0`.
-- **Rails Version**: This project uses Rails `7.x`. Make sure your changes are compatible.
-- **Style**: Follow the [Ruby community style guide](https://rubystyle.guide).
-
-### 3. Code Organization
-
-- Place any new services in the `lib/ruby_api_pack_cloudways/` folder.
-- Follow the same structure for methods in service classes and modules, ensuring maintainability across features.
-- Keep code DRY (Don’t Repeat Yourself). If something is reusable, refactor it into a shared method or module.
-
-## Commit Messages
-
-A good commit message provides clarity and context for the changes made. Follow these guidelines for commit messages:
-
-- Use present tense: "Add feature" instead of "Added feature".
-- Limit the subject line to 50 characters.
-- Provide a detailed description if necessary.
-- Reference any related issues by number.
-
-### Example Commit Message
-
-```md
-Add provider list fetch functionality for Cloudways API
-
-- Implement `cw_provider_list` method in CwLists class
-- Add corresponding tests in `cw_lists_spec.rb`
-- Update API connection class to handle new endpoint
-
-Fixes #15
-```
-
-## Pull Requests
-
-When you're ready to submit your changes, please follow these steps:
-
-### 1. Create a Branch
-
-Work on a separate branch that describes the feature or fix.
-
-```bash
-git checkout -b feature/add-provider-list
-```
-
-### 2. Test Your Changes
-
-Ensure all tests pass before submitting your pull request (PR).
-
-```bash
-bundle exec rspec
-```
-
-### 3. Submit the PR
-
-When your changes are ready, push your branch to GitHub and open a pull request. Make sure to:
-
-- Provide a descriptive title.
-- Reference any related issues.
-- Include details of the changes you’ve made and any necessary context.
-
-### 4. Respond to Feedback
-
-The maintainers may request changes. Be ready to address them.
-
-## Testing
-
-Before submitting a PR, ensure the test suite passes. We use RSpec for unit and integration testing. Follow these steps:
-
-### 1. Run Tests
-
-Ensure that the test suite runs and passes.
-
-```bash
-bundle exec rspec
-```
-
-### 2. Write Tests
-
-Any new functionality should include corresponding tests. Tests are located in the `spec/` folder, and you should follow the structure already in place for:
-
-- **Modules**: Place new tests in `spec/modules/`.
-- **Services**: Place service-related tests in `spec/services/`.
-
-### 3. Test Coverage
-
-Ensure that your code is well-covered by tests.
-
-## Reporting Issues
-
-If you encounter any bugs or have feature requests, please [open an issue](https://github.com/phcdevworks/ruby_api_pack_cloudways/issues). When reporting, please include:
-
-- A clear title and description.
-- Steps to reproduce the issue.
-- Any relevant logs or error messages.
+Open an issue if you need direction before making a larger change.
 
 ## Code of Conduct
 
-Please read and follow our [Code of Conduct](https://github.com/phcdevworks/ruby_api_pack_cloudways/blob/main/CODE_OF_CONDUCT.md) to ensure a welcoming and inclusive environment for everyone.
+By participating in this project, you agree to follow the
+[Code of Conduct](CODE_OF_CONDUCT.md).
+
+## License
+
+By contributing, you agree that your contributions will be licensed under the
+MIT License.

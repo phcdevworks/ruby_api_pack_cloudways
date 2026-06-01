@@ -23,6 +23,7 @@ Gem::Specification.new do |spec|
   spec.metadata['homepage_uri'] = spec.homepage
   spec.metadata['source_code_uri'] = 'https://github.com/phcdevworks/ruby_api_pack_cloudways/'
   spec.metadata['changelog_uri'] = 'https://github.com/phcdevworks/ruby_api_pack_cloudways/releases'
+  spec.metadata['rubygems_mfa_required'] = 'true'
 
   spec.files = Dir['{lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
   spec.require_paths = ['lib']

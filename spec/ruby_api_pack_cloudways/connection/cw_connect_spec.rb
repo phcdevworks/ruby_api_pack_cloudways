@@ -79,7 +79,7 @@ RSpec.describe RubyApiPackCloudways::Connection::CwConnect do
 
       before do
         attempts = 0
-        allow(HTTParty).to receive(:get).and_wrap_original do |original_method, *args|
+        allow(HTTParty).to receive(:get).and_wrap_original do |_original_method, *_args|
           attempts += 1
           raise rate_limit_error if attempts == 1
 

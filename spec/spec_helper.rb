@@ -24,8 +24,8 @@ RSpec.configure do |config|
     RubyApiPackCloudways.configure do |c|
       c.api_url = 'https://api.cloudways.com/api/v1'
       c.api_path_token = '/oauth/access_token'
-      c.api_email = ENV['CLOUDWAYS_API_EMAIL']
-      c.api_key = ENV['CLOUDWAYS_API_KEY']
+      c.api_email = ENV.fetch('CLOUDWAYS_API_EMAIL', nil)
+      c.api_key = ENV.fetch('CLOUDWAYS_API_KEY', nil)
     end
   end
   config.example_status_persistence_file_path = '.rspec_status'
@@ -34,14 +34,14 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
   config.before do
-    puts "CLOUDWAYS_API_URL: #{ENV['CLOUDWAYS_API_URL']}"
-    puts "CLOUDWAYS_API_PATH_TOKEN: #{ENV['CLOUDWAYS_API_PATH_TOKEN']}"
-    puts "CLOUDWAYS_API_EMAIL: #{ENV['CLOUDWAYS_API_EMAIL']}"
-    puts "CLOUDWAYS_API_KEY: #{ENV['CLOUDWAYS_API_KEY']}"
+    puts "CLOUDWAYS_API_URL: #{ENV.fetch('CLOUDWAYS_API_URL', nil)}"
+    puts "CLOUDWAYS_API_PATH_TOKEN: #{ENV.fetch('CLOUDWAYS_API_PATH_TOKEN', nil)}"
+    puts "CLOUDWAYS_API_EMAIL: #{ENV.fetch('CLOUDWAYS_API_EMAIL', nil)}"
+    puts "CLOUDWAYS_API_KEY: #{ENV.fetch('CLOUDWAYS_API_KEY', nil)}"
 
     stub_request(:post, 'https://api.cloudways.com/api/v1/oauth/access_token')
       .with(
-        body: { email: ENV['CLOUDWAYS_API_EMAIL'], api_key: ENV['CLOUDWAYS_API_KEY'] },
+        body: { email: ENV.fetch('CLOUDWAYS_API_EMAIL', nil), api_key: ENV.fetch('CLOUDWAYS_API_KEY', nil) },
         headers: { 'Content-Type' => 'application/x-www-form-urlencoded' }
       ).to_return(status: 200, body: '{"access_token":"fake_token"}', headers: {})
   end
