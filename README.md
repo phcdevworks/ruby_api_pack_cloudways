@@ -1,78 +1,214 @@
-# PHCDevworks RubyApiPackCloudways
+# Ruby API Pack Cloudways
 
-![Forks](https://img.shields.io/github/forks/phcdevworks/ruby_api_pack_cloudways.svg?style=social)
-![Stars](https://img.shields.io/github/stars/phcdevworks/ruby_api_pack_cloudways.svg?style=social)
-
-## Overview
-
-![Issues](https://img.shields.io/github/issues/phcdevworks/ruby_api_pack_cloudways.svg)
-![Dependabot Status](https://img.shields.io/badge/Dependabot-enabled-brightgreen.svg?logo=dependabot)
+[![Gem Version](https://img.shields.io/gem/v/ruby_api_pack_cloudways.svg)](https://rubygems.org/gems/ruby_api_pack_cloudways)
+[![RSpec](https://github.com/phcdevworks/ruby_api_pack_cloudways/actions/workflows/test.yml/badge.svg)](https://github.com/phcdevworks/ruby_api_pack_cloudways/actions/workflows/test.yml)
 [![codecov](https://codecov.io/gh/phcdevworks/ruby_api_pack_cloudways/graph/badge.svg?token=BEEHE8A5D1)](https://codecov.io/gh/phcdevworks/ruby_api_pack_cloudways)
-![Build Status](https://github.com/phcdevworks/ruby_api_pack_cloudways/actions/workflows/test.yml/badge.svg)
-[![CodeQL](https://github.com/phcdevworks/ruby_api_pack_cloudways/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/phcdevworks/ruby_api_pack_cloudways/actions/workflows/github-code-scanning/codeql)
-![Gem Version](https://img.shields.io/gem/v/ruby_api_pack_cloudways.svg)
+[![License](https://img.shields.io/github/license/phcdevworks/ruby_api_pack_cloudways.svg)](MIT-LICENSE)
 
-RubyApiPackCloudways is a Ruby gem that provides an easy interface for interacting with the Cloudways API. It includes functionality for fetching information about Cloudways providers, server sizes, apps, and packages, as well as managing server connections and authentication tokens.
+`ruby_api_pack_cloudways` is a Ruby gem for working with the Cloudways API from
+Ruby and Rails applications. It centralizes Cloudways credentials, OAuth token
+fetching, authenticated requests, response parsing, list endpoints, and server
+operations behind a small service-style API.
 
-## Key Features:
+[Contributing](CONTRIBUTING.md) | [Code of Conduct](CODE_OF_CONDUCT.md) |
+[Changelog](CHANGELOG.md) | [Roadmap](ROADMAP.md) |
+[Security Policy](SECURITY.md) | [AI Guide](AGENTS.md)
 
-- **Provider List**: Fetch the list of available Cloudways providers.
-- **Server Sizes**: Retrieve details about available server sizes supported by Cloudways.
-- **App List**: Access a list of Cloudways applications.
-- **Package List**: Fetch the available packages on Cloudways.
-- **Token-Based Authentication**: Secure access to Cloudways API using OAuth tokens.
+## Source of Truth
 
-## Usage
+The public behavior of this gem is defined by the configuration object, the
+Cloudways connection layer, API endpoint wrappers, response validation, and
+RSpec coverage. Keep those surfaces aligned whenever endpoint behavior changes.
 
-### 1. Set up Cloudways API credentials
+| Layer | Path | Rule |
+| --- | --- | --- |
+| Gem entry point | `lib/ruby_api_pack_cloudways.rb` | Loads dependencies and exposes configuration |
+| Configuration | `lib/ruby_api_pack_cloudways/configuration.rb` | Owns Cloudways API URL, token path, email, and API key settings |
+| Token handling | `lib/ruby_api_pack_cloudways/connection/cw_token.rb` | Fetches and caches Cloudways OAuth access tokens |
+| HTTP connection | `lib/ruby_api_pack_cloudways/connection/cw_connect.rb` | Performs authenticated GET and POST requests |
+| List endpoints | `lib/ruby_api_pack_cloudways/api/cw_lists.rb` | Public list helpers for Cloudways metadata |
+| Server endpoints | `lib/ruby_api_pack_cloudways/api/cw_server.rb` | Public server-management helpers |
+| Response validation | `lib/ruby_api_pack_cloudways/handlers/response_validator.rb` | Normalizes expected list responses and logs validation failures |
+| Specs | `spec/` | Contract and regression coverage for configuration, connection, handlers, and API wrappers |
 
-You will need to configure your Cloudways API credentials in your Ruby environment. Here’s how you can do it:
+After behavior changes, run:
 
-1. Open your configuration block in the initializer or main application file:
-
-```ruby
-RubyApiPackCloudways.configure do |config|
-  config.api_url = 'https://api.cloudways.com/api/v1'
-  config.api_path_token = '/oauth/access_token'
-  config.api_email = '<your_cloudways_email>'
-  config.api_key = '<your_cloudways_api_key>'
-end
+```bash
+bundle exec rspec
+bundle exec rubocop
+gem build ruby_api_pack_cloudways.gemspec
 ```
 
-2. Save and restart your application.
+## What This Gem Owns
+
+- Cloudways API configuration for Ruby and Rails consumers
+- OAuth token fetching and short-lived token caching
+- Authenticated JSON GET and POST requests through HTTParty
+- Cloudways list helpers for apps, providers, regions, packages, settings, and
+  monitoring metadata
+- Cloudways server helpers for listing, details, lifecycle actions, cloning,
+  scaling, block storage, upgrades, and labels
+- Response validation for list-style Cloudways responses
+
+## What This Gem Does Not Own
+
+- Cloudways account setup, billing, provider availability, or API permissions
+- Host application credential storage
+- Host application authorization policy around server actions
+- UI components, admin dashboards, or deployment workflows
+- Long-running job orchestration around Cloudways operations
 
 ## Installation
-  
-Add this line to your application's Gemfile:
+
+Add the gem to your application's Gemfile:
 
 ```ruby
 gem "ruby_api_pack_cloudways"
 ```
 
-And then execute:
+Install dependencies:
+
 ```bash
-$ bundle
+bundle install
 ```
 
-Or install it yourself as:
-```bash
-$ gem install ruby_api_pack_cloudways
-```
-# Documentation Wiki
+Or install it directly:
 
-- [Home](https://github.com/phcdevworks/ruby_api_pack_cloudways/wiki)
-- [List Endpoints](https://github.com/phcdevworks/ruby_api_pack_cloudways/wiki/Cloudways-Ruby-List-Endpoints)
-- [Server Endpoints](https://github.com/phcdevworks/ruby_api_pack_cloudways/wiki/Cloudways-Ruby-Server-Endpoints)
+```bash
+gem install ruby_api_pack_cloudways
+```
+
+## Configuration
+
+Configure the gem before making API calls. In Rails, this usually belongs in an
+initializer such as `config/initializers/ruby_api_pack_cloudways.rb`.
+
+```ruby
+RubyApiPackCloudways.configure do |config|
+  config.api_url = "https://api.cloudways.com/api/v1"
+  config.api_path_token = "/oauth/access_token"
+  config.api_email = ENV.fetch("CLOUDWAYS_API_EMAIL")
+  config.api_key = ENV.fetch("CLOUDWAYS_API_KEY")
+end
+```
+
+Do not commit real Cloudways API keys. Use Rails credentials, environment
+variables, or your deployment secret manager.
+
+## Usage
+
+### List Endpoints
+
+List helpers return arrays from Cloudways metadata endpoints.
+
+```ruby
+providers = RubyApiPackCloudways::Api::CwLists.provider_list
+sizes = RubyApiPackCloudways::Api::CwLists.server_size_list
+apps = RubyApiPackCloudways::Api::CwLists.app_list
+packages = RubyApiPackCloudways::Api::CwLists.package_list
+regions = RubyApiPackCloudways::Api::CwLists.region_list
+```
+
+Available list helpers:
+
+| Method | Cloudways resource |
+| --- | --- |
+| `app_list` | Applications |
+| `backup_frequency_list` | Backup frequencies |
+| `country_list` | Countries |
+| `monitor_duration_list` | Monitoring durations |
+| `monitor_target_list` | Monitoring targets |
+| `package_list` | Packages |
+| `provider_list` | Providers |
+| `region_list` | Regions |
+| `server_size_list` | Server sizes |
+| `setting_list` | Settings |
+
+### Server Endpoints
+
+Server helpers call Cloudways server-management endpoints.
+
+```ruby
+servers = RubyApiPackCloudways::Api::CwServer.server_list
+details = RubyApiPackCloudways::Api::CwServer.server_details("123")
+
+RubyApiPackCloudways::Api::CwServer.restart_server("123")
+RubyApiPackCloudways::Api::CwServer.update_server_label("123", label: "Production")
+```
+
+Available server helpers:
+
+| Method | Purpose |
+| --- | --- |
+| `server_list` | List servers |
+| `server_details(server_id)` | Fetch server details |
+| `create_server(params)` | Create a server |
+| `clone_server(server_id, params)` | Clone a server |
+| `delete_server(server_id)` | Delete a server |
+| `start_server(server_id)` | Start a server |
+| `stop_server(server_id)` | Stop a server |
+| `restart_server(server_id)` | Restart a server |
+| `disk_usage(server_id)` | Fetch disk usage |
+| `attach_block_storage(server_id, params)` | Attach block storage |
+| `scale_block_storage(server_id, params)` | Scale block storage |
+| `scale_volume_size(server_id, params)` | Scale volume size |
+| `update_server_label(server_id, params)` | Update a server label |
+| `upgrade_server(server_id, params)` | Upgrade a server |
+
+## Development
+
+Install dependencies:
+
+```bash
+bundle install
+```
+
+Run the test suite:
+
+```bash
+bundle exec rspec
+```
+
+Run style checks:
+
+```bash
+bundle exec rubocop
+```
+
+Build the gem locally:
+
+```bash
+gem build ruby_api_pack_cloudways.gemspec
+```
+
+RSpec uses WebMock and VCR. Keep specs isolated from live Cloudways calls unless
+a maintainer explicitly asks for live API verification.
+
+## Documentation and AI Guides
+
+This repository uses the standardized PHCDevworks documentation model adapted
+from `phcdevworks/spectre-tokens` and the Rails/Ruby guidance in
+`phcdevworks/phcdevworks_accounts_stytch`:
+
+- `AGENTS.md` defines shared AI boundaries.
+- `CLAUDE.md`, `CODEX.md`, `COPILOT.md`, and `JULES.md` define agent-specific
+  working rules.
+- `.github/copilot-instructions.md` and `.github/codex-instructions.md` provide
+  GitHub-integrated assistant guidance.
+- `CHANGELOG.md`, `ROADMAP.md`, and `TODO.md` keep release and planning context
+  visible.
 
 ## Contributing
 
-[![contributors](https://contributors-img.web.app/image?repo=phcdevworks/ruby_api_pack_cloudways)](https://github.com/phcdevworks/ruby_api_pack_cloudways/graphs/contributors)
-  
-![Last Commit](https://img.shields.io/github/last-commit/phcdevworks/ruby_api_pack_cloudways.svg)
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+See [CONTRIBUTING.md](CONTRIBUTING.md) for setup, coding standards, pull
+request expectations, and release hygiene.
+
+## Security
+
+Please do not report vulnerabilities through public issues. Follow
+[SECURITY.md](SECURITY.md) for responsible disclosure.
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-  
-![License](https://img.shields.io/github/license/phcdevworks/ruby_api_pack_cloudways.svg)
+The gem is available as open source under the terms of the
+[MIT License](MIT-LICENSE).

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
+require 'logger'
 require 'ruby_api_pack_cloudways/handlers/response_validator'
 
 RSpec.describe RubyApiPackCloudways::Handlers::ResponseValidator do
@@ -49,9 +50,12 @@ RSpec.describe RubyApiPackCloudways::Handlers::ResponseValidator do
   describe '#log_error' do
     context 'when Rails is defined' do
       it 'logs the error using Rails.logger' do
-        stub_const('Rails', double('Rails', logger: double('Logger', error: nil)))
-        expect(Rails.logger).to receive(:error).with('[ERROR] Test error')
+        logger = instance_spy(Logger)
+        stub_const('Rails', Class.new)
+        allow(Rails).to receive(:logger).and_return(logger)
+
         dummy_class.send(:log_error, '[ERROR] Test error')
+        expect(logger).to have_received(:error).with('[ERROR] Test error')
       end
     end
 

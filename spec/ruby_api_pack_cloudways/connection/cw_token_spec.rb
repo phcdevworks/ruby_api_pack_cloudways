@@ -41,8 +41,8 @@ RSpec.describe RubyApiPackCloudways::Connection::CwToken do
       end
 
       it 'returns the cached token without making an HTTP request' do
-        expect(HTTParty).not_to receive(:post)
         expect(token.cw_api_token).to eq('cached_token')
+        expect(HTTParty).not_to have_received(:post)
       end
     end
 

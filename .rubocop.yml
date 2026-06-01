@@ -4,6 +4,7 @@ require:
   - rubocop-rspec
 
 AllCops:
+  NewCops: enable
   Exclude:
     - "db/schema.rb"
     - "db/migrate/**/*"
@@ -57,9 +58,6 @@ Naming/VariableNumber:
   Enabled: false
 
 RSpec/MultipleExpectations:
-  Max: 10
-
-RSpec/ExampleLength:
   Max: 10
 
 RSpec/MultipleMemoizedHelpers:
