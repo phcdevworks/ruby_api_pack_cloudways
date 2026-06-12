@@ -33,25 +33,6 @@ This repository is maintained by PHCDevworks and contains the
 `ruby_api_pack_cloudways` gem for Cloudways API access from Ruby and Rails
 applications.
 
-## Primary AI Developer
-
-**Claude Code** is the designated primary implementation agent for this
-repository. Human final review, commit, merge, tag, publish, and release
-authority rests with Bradley Potts and PHCDevworks maintainers.
-
-No AI agent should create commits, tags, releases, or publish gems unless
-explicitly asked by the human maintainer.
-
-## AI Operating Model
-
-| Agent | Role | Authority |
-| --- | --- | --- |
-| Claude Code | Lead implementation for Ruby API wrapper behavior | `CLAUDE.md` |
-| OpenAI Codex | Documentation, release readiness, repo hygiene, stabilization, and config standardization | `CODEX.md` |
-| ChatGPT | Strategy, coordination, prompt design, and external review support | Support only |
-| GitHub Copilot | IDE assistance, local edits, specs, and refactors | `COPILOT.md` |
-| Google Jules | Bounded automated maintenance and small dependency updates | `JULES.md` |
-
 ## Shared Source Rules
 
 | Path | Status | Notes |
