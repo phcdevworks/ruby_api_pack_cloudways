@@ -33,6 +33,28 @@ This repository is maintained by PHCDevworks and contains the
 `ruby_api_pack_cloudways` gem for Cloudways API access from Ruby and Rails
 applications.
 
+## Upstream Requests and Roadmap Self-Expansion
+
+Full directive: project-team [AGENTS.md](../AGENTS.md) "Upstream Requests and
+Roadmap Self-Expansion." Applied to this repo:
+
+- This gem has no upstream or downstream dependency on any other repo within
+  this workspace — it is an independent gem; do not invent a relationship.
+  Any consuming Rails application lives outside this workspace.
+- No repo in this workspace is known to depend on this gem. If one ever does,
+  it should append requests to this repo's own `TODO.md` under `##
+  Requested by Downstream`, kept visible and separate from self-planned work.
+- This repo's own `ROADMAP.md` may be proactively expanded with new or
+  reordered phases by the agent's own analysis — but never mark a phase
+  delivered without `bundle exec rspec`, `bundle exec rubocop`, and
+  `gem build ruby_api_pack_cloudways.gemspec` all passing, and never
+  introduce a dependency on another `project-ruby` gem without an explicit
+  architectural decision (see `project-ruby/CLAUDE.md` "How the Repos
+  Relate").
+- Surface any new TODO request or roadmap expansion in the handoff for Bradley
+  Potts in the same change it was made, and reflect cross-repo-relevant
+  changes in the project-team's own ROADMAP.md/TODO.md.
+
 ## Shared Source Rules
 
 | Path | Status | Notes |
