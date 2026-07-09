@@ -1,0 +1,73 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+language: "en-US"
+early_access: false
+reviews:
+  profile: "assertive"
+  request_changes_workflow: false
+  high_level_summary: true
+  high_level_summary_placeholder: "@coderabbitai summary"
+  auto_title_placeholder: "@coderabbitai"
+  review_status: true
+  commit_status: true
+  collapse_walkthrough: false
+  changed_files_summary: true
+  sequence_diagrams: true
+  assess_linked_issues: true
+  related_issues: true
+  related_prs: true
+  suggested_labels: true
+  auto_apply_labels: false
+  suggested_reviewers: false
+  poem: false
+  abort_on_close: true
+  auto_review:
+    enabled: true
+    auto_incremental_review: true
+    drafts: false
+  finishing_touches:
+    docstrings:
+      enabled: true
+  tools:
+    rubocop:
+      enabled: true
+    markdownlint:
+      enabled: true
+    gitleaks:
+      enabled: true
+    github-checks:
+      enabled: true
+      timeout_ms: 90000
+    yamllint:
+      enabled: true
+    languagetool:
+      enabled: true
+      level: default
+    actionlint:
+      enabled: true
+    semgrep:
+      enabled: true
+  path_instructions:
+    - path: "**/*.rb"
+      instructions: "Apply Ruby best practices. Flag: missing frozen_string_literal: true magic comment; unhandled non-200 Cloudways API responses; Law of Demeter violations. Verify token fetching stays inside Connection::CwToken and authenticated HTTP behavior stays inside Connection::CwConnect."
+    - path: "lib/ruby_api_pack_cloudways/api/**"
+      instructions: "Cloudways endpoint wrappers. Verify each public method maps to a documented Cloudways API path, uses the shared connection layer instead of ad hoc HTTP calls, and is reflected in a README.md endpoint table."
+    - path: "lib/ruby_api_pack_cloudways/connection/**"
+      instructions: "Token and HTTP connection layer. Flag any credential, OAuth token, or raw response logging that could leak into production logs. Verify debug_output usage is intentional and documented."
+    - path: "spec/**"
+      instructions: "Enforce RSpec best practices: descriptive describe/context/it blocks, let over instance variables, WebMock/VCR isolation from live Cloudways calls, and coverage for success, failure, and parsing paths on connection/token changes."
+    - path: "Gemfile"
+      instructions: "Flag overly permissive version constraints (>= x with no upper bound). Ensure test and development gems are in the correct group. Verify no gems with known CVEs are being introduced."
+    - path: "*.gemspec"
+      instructions: "Verify required_ruby_version is set, runtime and development dependencies are properly separated, summary and description are informative, and version follows semver."
+    - path: "CHANGELOG.md"
+      instructions: "Verify entries follow Keep a Changelog format with correct categorization (Added/Changed/Fixed/Removed) and link to a version tag."
+chat:
+  auto_reply: true
+knowledge_base:
+  opt_out: false
+  learnings:
+    scope: auto
+  issues:
+    scope: auto
+  pull_requests:
+    scope: auto

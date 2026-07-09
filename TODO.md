@@ -22,4 +22,4 @@
 - [ ] Confirm gemspec metadata links.
 - [ ] Document RubyGems release steps.
 - [ ] Keep CI, Codecov, and publish workflows aligned with release docs.
-- [ ] Add a release checklist to `.codex/release-readiness.md`.
+- [x] Add a release checklist to `.codex/release-readiness.md`.
