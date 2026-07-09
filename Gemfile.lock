@@ -62,7 +62,7 @@ GEM
     logger (1.6.1)
     matrix (0.4.2)
     mini_mime (1.1.5)
-    mini_portile2 (2.8.8)
+    mini_portile2 (2.8.9)
     minitest (5.25.1)
     multi_xml (0.7.1)
       bigdecimal (~> 3.1)
@@ -129,7 +129,7 @@ GEM
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.13.1)
     simplecov_json_formatter (0.1.4)
-    sqlite3 (1.7.3)
+    sqlite3 (2.9.5)
       mini_portile2 (~> 2.8.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
@@ -162,7 +162,7 @@ DEPENDENCIES
   rubocop-rspec (~> 3.0)
   ruby_api_pack_cloudways!
   simplecov (~> 0.22.0)
-  sqlite3 (~> 1.4)
+  sqlite3 (~> 2.9)
   vcr (~> 6.2)
   webmock (~> 3.23)
 
