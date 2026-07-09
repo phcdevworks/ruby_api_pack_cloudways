@@ -12,14 +12,14 @@ jobs:
       packages: write
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     # Set up the latest version of Ruby
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: '3.2'
-    
+
     # Install dependencies
     - name: Install Dependencies
       run: |

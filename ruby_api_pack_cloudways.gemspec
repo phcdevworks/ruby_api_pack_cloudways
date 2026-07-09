@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
   spec.license = 'MIT'
 
   # Specify the required Ruby version
-  spec.required_ruby_version = '>= 2.7.0'
+  spec.required_ruby_version = '>= 3.2.0'
 
   # Gem Meta Data
   spec.metadata['allowed_push_host'] = 'https://rubygems.org/'
