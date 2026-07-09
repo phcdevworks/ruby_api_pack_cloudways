@@ -17,12 +17,13 @@ Keep these files synchronized:
 
 - `README.md`
 - `CONTRIBUTING.md`
+- `SECURITY.md`
 - `CHANGELOG.md`
 - `ROADMAP.md`
 - `TODO.md`
 - `AGENTS.md`
-- `CODEX.md`
-- `.github/codex-instructions.md`
+- `CLAUDE.md`, `CODEX.md`, `COPILOT.md`, `JULES.md`
+- `.github/codex-instructions.md`, `.github/copilot-instructions.md`
 
 ## Security Reminder
 
