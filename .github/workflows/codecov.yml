@@ -39,7 +39,7 @@ jobs:
 
     # Step 5: Upload RSpec test results (test analytics)
     - name: Upload RSpec test results
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: rspec-results
         path: tmp/rspec_results.json
@@ -53,7 +53,7 @@ jobs:
 
     # Step 7: Upload coverage report artifact (optional for debugging)
     - name: Upload coverage report
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: coverage-report
         path: coverage/
