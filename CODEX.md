@@ -29,6 +29,7 @@ Codex may update:
 - `TODO.md`
 - `AGENTS.md`, `CLAUDE.md`, `CODEX.md`, `COPILOT.md`, `JULES.md`
 - `.github/` templates and assistant instructions
+- `.codex/` workspace notes
 
 ## Review Scope
 

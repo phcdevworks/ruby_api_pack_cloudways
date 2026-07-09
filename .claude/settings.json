@@ -1,0 +1,36 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bundle install*)",
+      "Bash(bundle exec rspec*)",
+      "Bash(bundle exec rubocop*)",
+      "Bash(gem build*)",
+      "Bash(git status)",
+      "Bash(git diff*)",
+      "Bash(git log*)"
+    ],
+    "deny": [
+      "Bash(rm -rf*)",
+      "Bash(rm -fr*)",
+      "Bash(git commit*)",
+      "Bash(gh repo delete*)",
+      "Bash(gh repo archive*)",
+      "Bash(git push --force*)",
+      "Bash(git push -f*)",
+      "Bash(git reset --hard*)",
+      "Bash(git clean -f*)",
+      "Bash(git clean -d*)",
+      "Bash(git clean -x*)",
+      "Bash(git branch -D*)",
+      "Bash(git branch -d*)",
+      "Bash(git tag -d*)",
+      "Bash(git filter-branch*)",
+      "Bash(git filter-repo*)",
+      "Bash(git gc --prune*)",
+      "Bash(git rebase*)",
+      "Bash(gem yank*)",
+      "Bash(dd *)",
+      "Bash(mkfs*)"
+    ]
+  }
+}
