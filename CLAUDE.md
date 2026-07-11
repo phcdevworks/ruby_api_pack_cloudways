@@ -11,6 +11,17 @@ endpoints, and server operations for Ruby and Rails applications. This file is
 the implementation guide for Claude Code. Read `AGENTS.md` first for shared
 agent boundaries.
 
+This gem depends on `ruby_api_pack_core` for its connection wrapper base class
+(`RubyApiPackCore::Connection::Base`) and configuration mixin
+(`RubyApiPackCore::Configurable`). `RubyApiPackCloudways::Connection::CwConnect`
+subclasses `RubyApiPackCore::Connection::Base` and only adds Cloudways-specific
+behavior (the OAuth bearer token lookup and rate-limit retry). This gem keeps
+its own `Handlers::ResponseValidator` locally — its `expected_key` signature
+differs intentionally from `ruby_api_pack_core`'s `expected_type` validator and
+was not migrated; do not conflate the two. Shared HTTP plumbing beyond that
+belongs upstream in `ruby_api_pack_core` — see that repo's own `CLAUDE.md`
+before changing anything that looks like generic request/response handling.
+
 ## Commit Policy
 
 Claude Code does not create commits in this repository unless explicitly asked.
@@ -49,11 +60,21 @@ and a changelog entry.
 
 1. Keep token fetching inside `RubyApiPackCloudways::Connection::CwToken`.
 2. Keep authenticated GET and POST behavior inside
-   `RubyApiPackCloudways::Connection::CwConnect`.
+   `RubyApiPackCloudways::Connection::CwConnect`, which subclasses
+   `RubyApiPackCore::Connection::Base` — only add Cloudways-specific behavior
+   there (auth headers, rate-limit retry), do not reimplement URL building,
+   status handling, or JSON parsing locally.
 3. Keep endpoint methods small and traceable to Cloudways API paths.
 4. Keep host app assumptions out of the gem.
 5. Avoid broad refactors unless they directly support the requested change.
-6. Do not expose Cloudways API keys, OAuth tokens, production account data,
+6. If a change requires modifying generic HTTP behavior (URL building, status
+   handling, JSON parsing, or the `configure` pattern) rather than
+   Cloudways-specific behavior, make that change in `ruby_api_pack_core`
+   instead, and coordinate the version bump here. This gem's own
+   `Handlers::ResponseValidator` (the `expected_key` variant) stays local —
+   do not merge it into `ruby_api_pack_core`'s `expected_type` validator
+   without an explicit decision to change its signature everywhere.
+7. Do not expose Cloudways API keys, OAuth tokens, production account data,
    server IDs, or raw live responses in logs, fixtures, docs, or test output.
 
 ## Testing Expectations

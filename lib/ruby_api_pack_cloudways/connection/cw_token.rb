@@ -26,8 +26,7 @@ module RubyApiPackCloudways
         response = HTTParty.post(
           "#{@cw_api_url_base}#{@cw_url_path_auth}",
           headers: { 'Content-Type' => 'application/x-www-form-urlencoded' },
-          body: { email: @cw_user_email, api_key: @cw_user_key },
-          debug_output: $stdout # Enable debug output for troubleshooting
+          body: { email: @cw_user_email, api_key: @cw_user_key }
         )
 
         if response.code == 200

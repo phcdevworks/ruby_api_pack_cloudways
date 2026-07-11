@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-require 'httparty'
-require 'oj'
+require 'ruby_api_pack_core'
 
 require_relative 'ruby_api_pack_cloudways/configuration'
 require_relative 'ruby_api_pack_cloudways/handlers/response_validator'
@@ -11,12 +10,9 @@ require_relative 'ruby_api_pack_cloudways/api/cw_lists'
 require_relative 'ruby_api_pack_cloudways/api/cw_server'
 
 module RubyApiPackCloudways
-  class << self
-    attr_accessor :configuration
+  extend RubyApiPackCore::Configurable
 
-    def configure
-      self.configuration ||= Configuration.new
-      yield(configuration)
-    end
+  def self.configuration_class
+    Configuration
   end
 end
