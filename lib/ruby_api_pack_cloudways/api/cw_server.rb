@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
+require 'ruby_api_pack_cloudways/handlers/response_validator'
+
 module RubyApiPackCloudways
   module Api
     class CwServer
+      extend RubyApiPackCloudways::Handlers::ResponseValidator
+
       # Server endpoints
       ENDPOINTS = {
         list: '/server',
@@ -23,7 +27,7 @@ module RubyApiPackCloudways
 
       # List all servers
       def self.server_list
-        fetch_list(ENDPOINTS[:list])['servers']
+        validate_response(fetch_list(ENDPOINTS[:list]), 'servers')
       end
 
       # Attach block storage to a server

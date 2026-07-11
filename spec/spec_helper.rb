@@ -34,11 +34,6 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
   config.before do
-    puts "CLOUDWAYS_API_URL: #{ENV.fetch('CLOUDWAYS_API_URL', nil)}"
-    puts "CLOUDWAYS_API_PATH_TOKEN: #{ENV.fetch('CLOUDWAYS_API_PATH_TOKEN', nil)}"
-    puts "CLOUDWAYS_API_EMAIL: #{ENV.fetch('CLOUDWAYS_API_EMAIL', nil)}"
-    puts "CLOUDWAYS_API_KEY: #{ENV.fetch('CLOUDWAYS_API_KEY', nil)}"
-
     stub_request(:post, 'https://api.cloudways.com/api/v1/oauth/access_token')
       .with(
         body: { email: ENV.fetch('CLOUDWAYS_API_EMAIL', nil), api_key: ENV.fetch('CLOUDWAYS_API_KEY', nil) },
