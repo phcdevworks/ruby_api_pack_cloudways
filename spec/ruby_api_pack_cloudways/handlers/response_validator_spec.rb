@@ -35,7 +35,7 @@ RSpec.describe RubyApiPackCloudways::Handlers::ResponseValidator do
     context 'when the key is missing in the response' do
       it 'raises an error for missing key' do
         expect { dummy_class.validate_response(missing_key_response, 'key') }
-          .to raise_error(/Unexpected response format: {"other_key"=>\[\]}/)
+          .to raise_error(/Unexpected response format: #{Regexp.escape(missing_key_response.inspect)}/)
       end
     end
 
