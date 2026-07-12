@@ -37,7 +37,7 @@
 | Contributing | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 [![Gem Version](https://img.shields.io/gem/v/ruby_api_pack_cloudways.svg)](https://rubygems.org/gems/ruby_api_pack_cloudways)
-[![RSpec](https://github.com/phcdevworks/ruby_api_pack_cloudways/actions/workflows/test.yml/badge.svg)](https://github.com/phcdevworks/ruby_api_pack_cloudways/actions/workflows/test.yml)
+[![CircleCI](https://img.shields.io/circleci/build/github/phcdevworks/ruby_api_pack_cloudways/main.svg)](https://circleci.com/gh/phcdevworks/ruby_api_pack_cloudways)
 [![codecov](https://codecov.io/gh/phcdevworks/ruby_api_pack_cloudways/graph/badge.svg?token=BEEHE8A5D1)](https://codecov.io/gh/phcdevworks/ruby_api_pack_cloudways)
 [![License](https://img.shields.io/github/license/phcdevworks/ruby_api_pack_cloudways.svg)](MIT-LICENSE)
 

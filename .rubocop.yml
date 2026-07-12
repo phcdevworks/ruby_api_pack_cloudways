@@ -5,6 +5,7 @@ require:
 
 AllCops:
   NewCops: enable
+  TargetRubyVersion: 3.3
   Exclude:
     - "db/schema.rb"
     - "db/migrate/**/*"
@@ -65,3 +66,6 @@ RSpec/MultipleMemoizedHelpers:
 
 RSpec/ExampleLength:
   Max: 15
+
+Layout/TrailingEmptyLines:
+  Enabled: true
