@@ -1,0 +1,44 @@
+version: 2.1
+
+orbs:
+  codecov: codecov/codecov@6.0.0
+
+jobs:
+  test:
+    parameters:
+      ruby-version:
+        type: string
+    docker:
+      - image: cimg/ruby:<< parameters.ruby-version >>
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - bundle-<< parameters.ruby-version >>-{{ checksum "Gemfile.lock" }}
+      - run: bundle config set --local path 'vendor/bundle'
+      - run: bundle install
+      - save_cache:
+          key: bundle-<< parameters.ruby-version >>-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      - run:
+          name: bundle exec rspec
+          command: |
+            mkdir -p tmp/test-results
+            bundle exec rspec --format progress --format RspecJunitFormatter --out tmp/test-results/rspec.xml
+      - store_test_results:
+          path: tmp/test-results
+      - run: bundle exec rubocop
+      - codecov/upload:
+          files: coverage/.resultset.json
+      - codecov/upload:
+          files: tmp/test-results/rspec.xml
+          report_type: test_results
+
+workflows:
+  test:
+    jobs:
+      - test:
+          matrix:
+            parameters:
+              ruby-version: ['3.3.4', '3.4']
