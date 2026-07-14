@@ -11,8 +11,10 @@ Gem::Specification.new do |spec|
   spec.email       = ['info@phcdevworks.com', 'brad.potts@phcdevworks.com']
   spec.homepage    = 'https://github.com/phcdevworks/ruby_api_pack_cloudways/wiki'
   spec.summary     = 'API Pack for Cloudways'
-  spec.description = 'RubyApiPackCloudways is a Ruby gem for interacting with the Cloudways API. It provides easy access to
-  providers, server sizes, apps, and packages, with built-in OAuth authentication for secure API requests.'
+  spec.description = 'RubyApiPackCloudways is a Ruby gem for interacting with the Cloudways API. It provides ' \
+                     'easy access to providers, server sizes, apps, and packages, with built-in OAuth ' \
+                     'authentication for secure API requests. It is built on ruby_api_pack_core for its ' \
+                     'shared HTTP client and response handling.'
   spec.license = 'MIT'
 
   # Specify the required Ruby version

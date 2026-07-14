@@ -1,5 +1,13 @@
 # Ruby API Pack Cloudways
 
+`ruby_api_pack_cloudways` is a Ruby gem for interacting with the Cloudways
+API. It provides easy access to providers, server sizes, apps, and packages,
+with built-in OAuth authentication for secure API requests.
+
+Maintained by [PHCDevworks](https://go.phcdev.co). It is built on
+`ruby_api_pack_core`, which supplies its shared HTTP client, response
+validation, and configuration pattern.
+
 ## Repository Snapshot
 
 | Field | Value |

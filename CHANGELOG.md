@@ -6,7 +6,7 @@ reflects gem releases published to RubyGems.
 
 ## [Unreleased]
 
-Change type: docs/config only + architecture alignment
+Contract change type: semantic change
 
 ### Added
 
@@ -55,14 +55,74 @@ Change type: docs/config only + architecture alignment
   spec style so the documented validation gate passes.
 - Added RubyGems MFA metadata to the gemspec.
 
-## [0.4.0] - 2026-06-02
+## [0.4.0] - 2024-11-17
+
+**Release Title:** Phase 0 - Improvements and Fixes
+
+Contract change type: additive
 
 ### Added
 
-- Current gem release line for Cloudways API wrapper behavior.
+- Added a countries endpoint wrapper.
+- Added response validation across Cloudways API responses.
+
+### Changed
+
+- Improved access-token expiration and caching behavior.
+- Improved response parsing and error handling.
+- Updated Ruby compatibility in preparation for Rails 8.
+
+### Fixed
+
+- Fixed the monitor-targets and monitor-durations endpoint behavior.
+- Fixed SSL communication issues and token-refresh edge cases.
+
+## [0.3.0] - 2024-11-01
+
+**Release Title:** Phase 0 - Implemented Cloudways List API Endpoints
+
+Contract change type: additive
+
+### Added
+
+- Added Cloudways list endpoint wrappers for applications, backup frequencies,
+  countries, monitor durations, monitor targets, packages, providers, regions,
+  server sizes, and settings.
+- Added focused RSpec coverage for the list endpoints.
+
+### Changed
+
+- Hardened JSON deserialization by parsing Cloudways responses with `Oj` in
+  strict mode.
+- Expanded configuration and endpoint documentation.
+
+## [0.2.0] - 2024-10-30
+
+**Release Title:** Phase 0 - Implemented Cloudways Server API Endpoints
+
+Contract change type: additive
+
+### Added
+
+- Added Cloudways server endpoint wrappers and focused RSpec coverage.
+- Added POST request support through `cloudways_api_post_connection`.
+
+### Changed
+
+- Expanded server endpoint setup and usage documentation.
 
 ## [0.1.0] - 2024-09-25
+
+**Release Title:** Phase 0 - Official Stable Release
+
+Contract change type: additive
 
 ### Added
 
 - Initial release.
+
+[unreleased]: https://github.com/phcdevworks/ruby_api_pack_cloudways/compare/0.4.0...HEAD
+[0.4.0]: https://github.com/phcdevworks/ruby_api_pack_cloudways/compare/0.3.0...0.4.0
+[0.3.0]: https://github.com/phcdevworks/ruby_api_pack_cloudways/compare/0.2.0...0.3.0
+[0.2.0]: https://github.com/phcdevworks/ruby_api_pack_cloudways/compare/0.1.0...0.2.0
+[0.1.0]: https://github.com/phcdevworks/ruby_api_pack_cloudways/tree/0.1.0
