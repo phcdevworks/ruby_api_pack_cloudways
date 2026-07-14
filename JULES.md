@@ -23,11 +23,5 @@ Jules should keep work small, mechanical, and easy to review.
 
 ## Validation
 
-Before handoff, run:
-
-```bash
-bundle exec rspec
-bundle exec rubocop
-```
-
+Before handoff, run the validation gate described in [AGENTS.md](AGENTS.md).
 If validation cannot run, report why.

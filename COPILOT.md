@@ -16,12 +16,8 @@ not own architecture, release decisions, or final handoff authority.
 
 ## Validation
 
-Run these before handing off non-trivial changes:
-
-```bash
-bundle exec rspec
-bundle exec rubocop
-```
+Before handing off non-trivial changes, run the validation gate described in
+[AGENTS.md](AGENTS.md).
 
 ## Security
 
