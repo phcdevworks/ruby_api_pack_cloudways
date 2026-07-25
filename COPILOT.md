@@ -12,7 +12,7 @@ not own architecture, release decisions, or final handoff authority.
 - Keep authenticated HTTP behavior centralized in `Connection::CwConnect`.
 - Keep endpoint wrappers small and covered by focused RSpec examples.
 - Keep README and changelog aligned with public usage.
-- Do not create commits unless explicitly asked.
+- Copilot has commit, push, and tag authority per the companywide grant, scoped to this work.
 
 ## Validation
 

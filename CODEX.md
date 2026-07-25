@@ -50,7 +50,7 @@ Run the validation gate described in [AGENTS.md](AGENTS.md).
 ## Hard Limits
 
 - Do not publish the gem unless explicitly asked.
-- Do not create commits, tags, or releases unless explicitly asked.
+- Codex has commit, push, and tag authority for its own scope of work; do not publish the gem or cut releases unless explicitly asked.
 - Do not overwrite unrelated local changes.
 - Do not add real Cloudways credentials, OAuth tokens, production server IDs, or
   raw live API payloads to documentation, tests, fixtures, or logs.
