@@ -24,9 +24,11 @@ before changing anything that looks like generic request/response handling.
 
 ## Commit Policy
 
-Claude Code does not create commits in this repository unless explicitly asked.
-Prepare changes, run validation, and leave commit, tag, push, and release
-authority to the human maintainer.
+Claude Code has full commit, push, and tag authority in this repository,
+effective 2026-07-25 by explicit direction from Bradley Potts. Run
+validation before committing, then stage, commit, tag, and push without
+per-action confirmation. Gem release/publish authority remains with the
+human maintainer.
 
 ## Development Workflow
 

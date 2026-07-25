@@ -2,17 +2,11 @@
 
 ## Role
 
-GitHub Copilot is the general development support assistant for this gem.
-
-- Claude Code owns implementation leadership (`CLAUDE.md`).
-- Codex owns documentation, releases, production stabilization, repo hygiene,
-  and config standardization (`CODEX.md`).
-- Jules owns bounded automated maintenance (`JULES.md`).
-- Copilot supports editing, refactors, specs, Ruby/API hints, and productivity
-  inside the IDE.
-
-Copilot does not own architecture direction, release decisions, or final handoff
-authority.
+GitHub Copilot is the general development support assistant for this
+gem — editing, refactors, specs, Ruby/API hints, and productivity inside the
+IDE. Copilot does not own architecture direction, release decisions, or
+final handoff authority. Full roster and authority table:
+[AGENTS.md](../AGENTS.md).
 
 ## Package Conventions
 
@@ -27,7 +21,7 @@ authority.
 - Prefer narrow, pattern-aligned changes.
 - Keep docs and specs in sync when behavior changes.
 - Preserve unrelated local changes.
-- Do not create commits unless explicitly asked.
+- Copilot has commit, push, and tag authority per the companywide grant, scoped to this work.
 
 ## Validation
 
