@@ -4,8 +4,10 @@
 
 Codex owns documentation standardization, release readiness, repo hygiene,
 production stabilization, and configuration consistency for this Ruby/Rails
-Cloudways API gem. Claude Code leads implementation changes. Human maintainers
-own final commit, merge, tag, publish, and release decisions.
+Cloudways API gem. Claude Code leads implementation changes. Codex has
+commit, push, and tag authority for its own scope of work, including
+cutting the release itself (see "Release Mechanics" below). `gem push`
+(RubyGems publish) and merge decisions stay with Bradley Potts.
 
 ## Default Workflow
 
@@ -45,12 +47,36 @@ When reviewing changes, Codex checks:
 
 ## Validation Commands
 
-Run the validation gate described in [AGENTS.md](AGENTS.md).
+Run the validation gate described in [AGENTS.md](AGENTS.md), plus:
+
+```bash
+gem build ruby_api_pack_cloudways.gemspec
+```
+
+## Release Mechanics
+
+1. Update `lib/ruby_api_pack_cloudways/version.rb` to the new version.
+2. Move `[Unreleased]` notes in `CHANGELOG.md` into a new versioned entry:
+   `## [<version>] - <YYYY-MM-DD>`, with a release title line in the format
+   `**Release Title:** Phase <N> - <short title>`, where `Phase <N>` is the
+   active phase name from this repo's own `ROADMAP.md` and `<short title>`
+   is a concise summary of what shipped. If the release spans no single
+   ROADMAP phase, state that explicitly instead of inventing one.
+3. Run the validation gate described in [AGENTS.md](AGENTS.md) plus
+   `gem build ruby_api_pack_cloudways.gemspec` — must pass clean.
+4. Stage and commit the version bump and changelog update.
+5. Create the git tag: `git tag v<version>` (matching `version.rb` exactly),
+   then push the commit and tag.
+6. Publish the GitHub Release from that tag: `gh release create v<version>
+   --title "v<version>: Phase <N> - <short title>" --notes-file` (extract the
+   new version's changelog section, or `--notes` inline for a short release).
+7. `gem push` is **not** run by Codex — that stays with Bradley Potts.
 
 ## Hard Limits
 
-- Do not publish the gem unless explicitly asked.
-- Codex has commit, push, and tag authority for its own scope of work; do not publish the gem or cut releases unless explicitly asked.
+- Commit, tag, and GitHub Release authority is granted per "Release
+  Mechanics" above; do not run `gem push` or merge PRs unless explicitly
+  asked.
 - Do not overwrite unrelated local changes.
 - Do not add real Cloudways credentials, OAuth tokens, production server IDs, or
   raw live API payloads to documentation, tests, fixtures, or logs.

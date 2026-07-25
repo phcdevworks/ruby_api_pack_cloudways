@@ -24,11 +24,17 @@ and Google Jules — have full commit, push, and tag authority in this
 repository, effective 2026-07-25 by explicit direction from Bradley Potts —
 see the Commit Policy section in each agent's own guide
 ([CLAUDE.md](CLAUDE.md), [CODEX.md](CODEX.md), [COPILOT.md](COPILOT.md),
-[JULES.md](JULES.md)). Bradley Potts retains ultimate ownership and holds
-final authority for merges, publishing, and releases. This grant covers git
-operations within each agent's own scope of work as defined above — it does
-not expand what any agent is authorized to decide. ChatGPT has no repository
-access and is excluded.
+[JULES.md](JULES.md)). **OpenAI Codex** additionally has release authority:
+Codex cuts releases autonomously — version bump, changelog versioning,
+`v<version>` git tag, and GitHub Release publish via `gh` — for every
+release-ready `CHANGELOG.md [Unreleased]` section, without waiting for
+per-release approval; see `CODEX.md` "Release Mechanics" for the full
+procedure. **RubyGems publishing (`gem push`) remains Bradley Potts's sole
+authority** — no agent pushes the gem. Bradley Potts retains ultimate
+ownership and holds final authority for merges and publishing. This grant
+covers git and release operations within each agent's own scope of work as
+defined above — it does not expand what any agent is authorized to decide
+otherwise. ChatGPT has no repository access and is excluded.
 
 ## Cross-Repo Access
 
