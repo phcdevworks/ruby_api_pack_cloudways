@@ -58,7 +58,7 @@ operations behind a small service-style API.
 [Changelog](CHANGELOG.md) | [Roadmap](ROADMAP.md) |
 [Security Policy](SECURITY.md) | [AI Guide](AGENTS.md)
 
-## Source of Truth
+## Source Of Truth
 
 The public behavior of this gem is defined by the configuration object, the
 Cloudways connection layer, API endpoint wrappers, response validation, and
@@ -101,6 +101,21 @@ gem build ruby_api_pack_cloudways.gemspec
 - Host application authorization policy around server actions
 - UI components, admin dashboards, or deployment workflows
 - Long-running job orchestration around Cloudways operations
+
+## When To Use This Gem
+
+- You are building a Rails or Ruby application that needs Cloudways API
+  access (server lifecycle, listings, OAuth token handling) and want the
+  connection and caching handled for you.
+- You want consistent HTTParty-based request behavior instead of calling the
+  Cloudways API directly.
+
+## When Not To Use This Gem
+
+- You need to manage Cloudways account setup, billing, provider
+  availability, or API permissions — those stay in the Cloudways dashboard.
+- You need long-running job orchestration around Cloudways operations — this
+  gem provides the API client only, not a job framework.
 
 ## Installation
 
@@ -241,6 +256,26 @@ from `phcdevworks/spectre-tokens` and the Rails/Ruby guidance in
   GitHub-integrated assistant guidance.
 - `CHANGELOG.md`, `ROADMAP.md`, and `TODO.md` keep release and planning context
   visible.
+
+## AI And Automation Boundaries
+
+Claude Code (`claude-sonnet-4-6`) is the primary development agent for this
+repository. Codex handles releases, including cutting tagged releases and
+GitHub Releases. GitHub Copilot and Jules provide additional development
+support per their scoped task lists.
+
+All AI agents with repository access (Claude Code, Codex, Copilot, Jules)
+have commit, push, and tag authority in this repository. `gem push`
+(RubyGems publish) remains Bradley Potts's sole authority. See
+[AGENTS.md](AGENTS.md) for the full commit-policy and release-authority
+grant.
+
+**Protected from automated change:** shared HTTP plumbing (belongs in
+`ruby_api_pack_core`, not here), this gem's own `Handlers::ResponseValidator`
+(`expected_key` variant, intentionally distinct from `ruby_api_pack_core`'s
+validator), and Cloudways API keys, OAuth tokens, or production account data
+in logs/fixtures/docs. See [AGENTS.md](AGENTS.md) for full agent governance
+and boundary rules.
 
 ## Contributing
 
