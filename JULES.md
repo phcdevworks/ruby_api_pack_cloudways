@@ -3,7 +3,9 @@
 ## Role
 
 Google Jules may perform bounded automated maintenance in this repository.
-Jules should keep work small, mechanical, and easy to review.
+Jules should keep work small, mechanical, and easy to review. Jules has
+commit, push, and tag authority per the companywide grant in
+[AGENTS.md](AGENTS.md), scoped to the task categories below.
 
 ## Appropriate Work
 
