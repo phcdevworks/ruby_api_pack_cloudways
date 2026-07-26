@@ -24,11 +24,10 @@ before changing anything that looks like generic request/response handling.
 
 ## Commit Policy
 
-Claude Code has full commit, push, and tag authority in this repository,
-effective 2026-07-25 by explicit direction from Bradley Potts. Run
-validation before committing, then stage, commit, tag, and push without
-per-action confirmation. Gem release/publish authority remains with the
-human maintainer.
+See [AGENTS.md](AGENTS.md) for the full grant of authority. Claude Code
+applies it here: run validation before committing, then stage, commit,
+tag, and push without per-action confirmation. `gem push` (RubyGems
+publish) stays with Bradley Potts.
 
 ## Development Workflow
 
