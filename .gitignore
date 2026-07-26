@@ -1,15 +1,22 @@
+# Ruby / Bundler
 /.bundle/
+/pkg/
+*.gem
+
+# Documentation
 /.yardoc
 /_yardoc/
-/coverage/
 /doc/
-/pkg/
+
+# Test/runtime artifacts
+/coverage/
 /spec/reports/
-/tmp/
-*.gem
 /spec/dummy/log/*
 /spec/dummy/tmp/*
-.rspec_status
 /spec/vcr_cassettes/
+.rspec_status
+/tmp/
+
+# Secrets
 .env
 spec/dummy/config/master.key
