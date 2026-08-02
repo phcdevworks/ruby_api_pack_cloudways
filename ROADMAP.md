@@ -7,14 +7,14 @@ for Cloudways API access. It is planning context, not a release promise.
 
 - Keep the Cloudways list and server endpoint surface stable and well tested.
 - Keep token fetching and authenticated request behavior centralized.
-- Improve safety around credentials, HTTP debug output, and test fixtures.
+- Improve safety around credentials and test fixtures. The hardcoded
+  `debug_output: $stdout` leak in `CwConnect`/`CwToken` is fixed in
+  `CHANGELOG.md [Unreleased]`, not yet cut as a release.
 - Keep release hygiene consistent for RubyGems publishing.
 
 ## Near-Term
 
 - Expand README examples for common Rails initializer and service-object usage.
-- Review HTTP debug output behavior so production consumers do not accidentally
-  expose request or response data.
 - Add clearer examples for Cloudways server creation and scaling payloads.
 - Confirm Ruby version support across gem metadata, CI, and docs.
 - Improve response error handling around non-200 Cloudways API responses.

@@ -11,7 +11,9 @@
 
 ## Ruby Gem
 
-- [ ] Review Cloudways HTTP debug output before production use.
+- [x] Review Cloudways HTTP debug output before production use — removed the
+      hardcoded `debug_output: $stdout` from `CwConnect`/`CwToken`; see
+      `CHANGELOG.md [Unreleased]`, not yet cut as a release.
 - [ ] Confirm supported Ruby versions across gemspec, CI, and docs.
 - [ ] Add or verify specs for missing negative paths.
 - [ ] Consider response wrapper objects for common Cloudways success and error
