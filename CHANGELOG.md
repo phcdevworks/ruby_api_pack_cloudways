@@ -54,6 +54,13 @@ Contract change type: semantic change
 - Enabled RuboCop new-cop handling, removed duplicate lint config, and adjusted
   spec style so the documented validation gate passes.
 - Added RubyGems MFA metadata to the gemspec.
+- Updated development/test gems to their latest RubyGems.org releases:
+  `bundler` (`~> 2.5` → `~> 4.0`), `rubocop` (`~> 1.88` → `~> 1.89`),
+  `simplecov` (`~> 0.22.0` → `~> 1.1`), `vcr` (`~> 6.2` → `~> 6.4`), and
+  `webmock` (`~> 3.23` → `~> 3.26`). `.rubocop.yml` now loads the RuboCop
+  extensions via `plugins:` instead of the deprecated `require:` key.
+  `ruby_api_pack_core` (the gemspec's runtime dependency) is unchanged —
+  its latest published version (0.1.0) is already covered by `~> 0.1`.
 
 ## [0.4.0] - 2024-11-17
 

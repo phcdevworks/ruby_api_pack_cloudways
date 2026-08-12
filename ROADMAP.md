@@ -11,6 +11,10 @@ for Cloudways API access. It is planning context, not a release promise.
   `debug_output: $stdout` leak in `CwConnect`/`CwToken` is fixed in
   `CHANGELOG.md [Unreleased]`, not yet cut as a release.
 - Keep release hygiene consistent for RubyGems publishing.
+- Development/test gems (bundler, rubocop, simplecov, vcr, webmock) are
+  current with their latest RubyGems.org releases as of 2026-08-12; the
+  gemspec's `ruby_api_pack_core` runtime dependency already covers its
+  latest published version under `~> 0.1`.
 
 ## Near-Term
 

@@ -21,6 +21,9 @@
 
 ## Release
 
+- [x] Update development/test gems to latest RubyGems.org releases (bundler,
+      rubocop, simplecov, vcr, webmock); gemspec's `ruby_api_pack_core`
+      dependency already covers its latest published version under `~> 0.1`.
 - [ ] Confirm gemspec metadata links.
 - [ ] Document RubyGems release steps.
 - [ ] Keep CI, Codecov, and publish workflows aligned with release docs.
