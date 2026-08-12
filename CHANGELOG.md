@@ -64,7 +64,7 @@ Contract change type: semantic change
 
 ## [0.4.0] - 2024-11-17
 
-**Release Title:** Phase 0 - Improvements and Fixes
+**Release Title:** Improvements and Fixes
 
 Contract change type: additive
 
@@ -86,7 +86,7 @@ Contract change type: additive
 
 ## [0.3.0] - 2024-11-01
 
-**Release Title:** Phase 0 - Implemented Cloudways List API Endpoints
+**Release Title:** Implemented Cloudways List API Endpoints
 
 Contract change type: additive
 
@@ -105,7 +105,7 @@ Contract change type: additive
 
 ## [0.2.0] - 2024-10-30
 
-**Release Title:** Phase 0 - Implemented Cloudways Server API Endpoints
+**Release Title:** Implemented Cloudways Server API Endpoints
 
 Contract change type: additive
 
@@ -120,7 +120,7 @@ Contract change type: additive
 
 ## [0.1.0] - 2024-09-25
 
-**Release Title:** Phase 0 - Official Stable Release
+**Release Title:** Official Stable Release
 
 Contract change type: additive
 
