@@ -9,6 +9,11 @@ commit, push, and tag authority for its own scope of work, including
 cutting the release itself (see "Release Mechanics" below). `gem push`
 (RubyGems publish) and merge decisions stay with Bradley Potts.
 
+Claude Code has no git access in this repo. Codex is now also responsible for
+executing git operations for Claude Code's handed-off, validated work here —
+staging, committing, and pushing it — not just Codex's own
+documentation/hygiene commits.
+
 ## Default Workflow
 
 1. Inspect the current working tree and preserve unrelated local changes.

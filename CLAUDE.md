@@ -22,12 +22,19 @@ was not migrated; do not conflate the two. Shared HTTP plumbing beyond that
 belongs upstream in `ruby_api_pack_core` — see that repo's own `CLAUDE.md`
 before changing anything that looks like generic request/response handling.
 
-## Commit Policy
+## Git Access — Denied
 
-See [AGENTS.md](AGENTS.md) for the full grant of authority. Claude Code
-applies it here: run validation before committing, then stage, commit,
-tag, and push without per-action confirmation. `gem push` (RubyGems
-publish) stays with Bradley Potts.
+**Claude Code has zero git access in this repo, as part of a companywide
+policy.** Claude Code must not run `git commit`, `git push`, `git tag`, or
+any other git command — read-only or mutating — here. This supersedes the
+prior commit/push/tag grant described in [AGENTS.md](AGENTS.md). OpenAI
+Codex now executes all git operations for this repo; see [AGENTS.md](AGENTS.md)
+and [CODEX.md](CODEX.md).
+
+When work is ready, Claude Code runs the validation gate described in
+[AGENTS.md](AGENTS.md) and then stops short of any git command, handing off
+to Codex (or Bradley Potts) with a summary of files changed and validation
+performed. `gem push` (RubyGems publish) stays with Bradley Potts.
 
 ## Development Workflow
 
