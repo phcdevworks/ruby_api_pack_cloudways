@@ -19,6 +19,9 @@
       "Bash(gem yank*)",
       "Bash(dd *)",
       "Bash(mkfs*)"
+    ],
+    "additionalDirectories": [
+      "/home/phcdevone/development/phcdevworks"
     ]
   }
 }
