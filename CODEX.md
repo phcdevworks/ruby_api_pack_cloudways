@@ -65,16 +65,22 @@ gem build ruby_api_pack_cloudways.gemspec
    `## [<version>] - <YYYY-MM-DD>`, with a release title line in the format
    `**Release Title:** <short title>`, where `<short title>` is a concise
    summary of what shipped. Do not include roadmap phase numbers, names, or
-   version numbers in release titles.
+   version numbers in release titles. Confirm a
+   `Contract change type: <additive|semantic change|breaking>`
+   classification line is present and accurate for the release.
 3. Run the validation gate described in [AGENTS.md](AGENTS.md) plus
    `gem build ruby_api_pack_cloudways.gemspec` — must pass clean.
 4. Stage and commit the version bump and changelog update.
 5. Create the git tag: `git tag v<version>` (matching `version.rb` exactly),
    then push the commit and tag.
 6. Publish the GitHub Release from that tag: `gh release create v<version>
-   --title "<short title>" --notes-file` (extract the new version's changelog
-   section, or `--notes` inline for a short release). The GitHub Release title
-   must match the changelog release title exactly.
+   --title "<short title>" --notes-file`. The notes file must contain the
+   full versioned `CHANGELOG.md` entry verbatim except for the version
+   heading and `Release Title` line, which GitHub already displays. Preserve
+   section headings and every bullet. Never summarize, condense, paraphrase,
+   add to, or omit the remaining changelog content — `--notes` inline
+   freeform text is never used, even for a short release. The GitHub Release
+   title must match the changelog release title exactly.
 7. `gem push` is **not** run by Codex — that stays with Bradley Potts.
 
 ## Hard Limits
