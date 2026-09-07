@@ -12,7 +12,7 @@ group :development, :test do
   gem 'rubocop-performance', '~> 1.26', require: false
   gem 'rubocop-rake', '~> 0.7.1', require: false
   gem 'rubocop-rspec', '~> 3.10', require: false
-  gem 'simplecov', '~> 1.1', require: false
+  gem 'simplecov', '~> 1.2', require: false
   gem 'vcr', '~> 6.4'
   gem 'webmock', '~> 3.26'
 end
