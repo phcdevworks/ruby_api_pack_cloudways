@@ -10,8 +10,8 @@ Contract change type: semantic change
 
 ### Added
 
-- Standardized repository documentation using the PHCDevworks documentation
-  model established in `phcdevworks/spectre-tokens`.
+- Standardized repository documentation using the established PHCDevworks
+  documentation model.
 - Added AI operating guides for shared agent behavior, Codex, Claude Code,
   Copilot, and Jules.
 - Added roadmap and TODO planning documents for Ruby/Rails workspace
@@ -20,6 +20,11 @@ Contract change type: semantic change
 
 ### Changed
 
+- Updated all development dependencies to their latest releases and pinned
+  every `Gemfile` entry with a pessimistic constraint (`rubocop ~> 1.92`, `rubocop-performance ~> 1.27`,
+  `rspec_junit_formatter ~> 0.8.0`, `simplecov ~> 1.3`, `webmock ~> 3.38`); refreshed
+  `Gemfile.lock` via `bundle update --all`. No runtime/gemspec
+  dependency constraints changed.
 - **Breaking (internal only):** `RubyApiPackCloudways::Connection::CwConnect`
   now subclasses `RubyApiPackCore::Connection::Base`, inheriting shared URL
   building, `200..299` status handling (widened from a bare `200` check), and

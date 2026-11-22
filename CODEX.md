@@ -34,7 +34,7 @@ Codex may update:
 - `CHANGELOG.md`
 - `ROADMAP.md`
 - `TODO.md`
-- `AGENTS.md`, `CLAUDE.md`, `CODEX.md`, `COPILOT.md`, `JULES.md`
+- `AGENTS.md`, `CLAUDE.md`, `CODEX.md`, `COPILOT.md`, `JULES.md`, `GROK.md`
 - `.github/` templates and assistant instructions
 - `.codex/` workspace notes
 

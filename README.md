@@ -37,6 +37,7 @@ validation, and configuration pattern.
 | Codex | [CODEX.md](CODEX.md) |
 | Copilot | [COPILOT.md](COPILOT.md) |
 | Jules | [JULES.md](JULES.md) |
+| Grok  | [GROK.md](GROK.md)   |
 | Roadmap | [ROADMAP.md](ROADMAP.md) |
 | Todo | [TODO.md](TODO.md) |
 | Changelog | [CHANGELOG.md](CHANGELOG.md) |
@@ -246,11 +247,10 @@ a maintainer explicitly asks for live API verification.
 ## Documentation and AI Guides
 
 This repository uses the standardized PHCDevworks documentation model adapted
-from `phcdevworks/spectre-tokens` and the Rails/Ruby guidance in
-`phcdevworks/phcdevworks_accounts_stytch`:
+from internal design-system and Rails/Ruby guidance:
 
 - `AGENTS.md` defines shared AI boundaries.
-- `CLAUDE.md`, `CODEX.md`, `COPILOT.md`, and `JULES.md` define agent-specific
+- `CLAUDE.md`, `CODEX.md`, `COPILOT.md`, `JULES.md`, and `GROK.md` define agent-specific
   working rules.
 - `.github/copilot-instructions.md` and `.github/codex-instructions.md` provide
   GitHub-integrated assistant guidance.
